@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('my-name', function(){
-    echo "Nuryaman";
-});
-Route::get('my-city/{param}', function($city){
-    echo "Kota saya " .$city;
-});
-Route::get('get-student/{param1}/{param2}', function($name ,$code){
-    echo "Nama saya " .$name ," NRP " .$code;
-});
+Route::get('customer/my-name', [CustomerController::class, 'index']);
 
+Route::get('customer/get-city/{param}', [CustomerController::class, 'getCity']);
+
+Route::get('customer/get-student/{param1}/{param2}', [CustomerController::class, 'getStudent']);
