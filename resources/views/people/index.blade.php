@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Selamat datang!!</h1>
-    <h2>Halo nama saya {{$name}}</h2>
-    @if ($grade<=70)
-    <h3>gagal</h3>
-    @else
+<h3>SELAMAT DATANG</h3>
+
+<h5>nama saya adalah {{$name}}</h5>
+
+@if ($grade>= 60)
     <h3>Lulus</h3>
-    @endif
-    @for ($x =1; $x<=10; $x++)
-    {{$x}}
-    @endfor
-</body>
-</html>
+@else
+    <h3>Tidak Lulus</h3>
+@endif
+
+@for ($i = 1; $i <= 10; $i++)
+    {{$i}}
+@endfor

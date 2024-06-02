@@ -1,2 +1,1 @@
-Hallo nama saya {{$name}}
-e
+Hallo nama saya {{ $name }}
