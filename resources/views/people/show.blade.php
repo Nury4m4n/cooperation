@@ -1,1 +1,0 @@
-Hallo nama saya {{ $name }}

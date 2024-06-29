@@ -14,12 +14,12 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id(); // id integer pk AI
-            $table->string('code',4)->unique(); // code varchar (4) unique not null
-            $table->string('name',30); // name varchar (30) not null
-            $table->string('phone',15)->nullable(); // phone varchar (15) null
+            $table->id(); //ID big integer pk ai
+            $table->string('code',4)->unique();
+            $table->string('name',30);
+            $table->string('phone',15)->nullable();
             $table->text('address');
-            $table->timestamps(); // created_at dan update_at
+            $table->timestamps();
         });
     }
 
