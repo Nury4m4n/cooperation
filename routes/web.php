@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\MandatorySavingController;
+use App\Models\MandatorySaving;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +28,4 @@ Route::get('customer', [CustomerController::class, 'index'])->name('customer.ind
 Route::get('customer/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
 Route::put('customer/update', [CustomerController::class, 'update'])->name('customer.update');
 Route::delete('customer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
+Route::resource('mandatory-saving', MandatorySavingController::class);

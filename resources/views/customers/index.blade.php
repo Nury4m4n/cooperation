@@ -126,19 +126,22 @@
                                     @csrf
                                     <div class="mb-2">
                                         <label for="code">Kode Nasabah</label>
-                                        <input type="text" name="code" id="code" class="form-control">
+                                        <input type="text" name="code" id="code"
+                                            class="form-control"placeholder="A204">
                                     </div>
                                     <div class="mb-2">
                                         <label for="name">Nama Nasabah</label>
-                                        <input type="text" name="name" id="name" class="form-control">
+                                        <input type="text" name="name" id="name" class="form-control"
+                                            placeholder="Nuryaman">
                                     </div>
                                     <div class="mb-2">
                                         <label for="phone">Phone Nasabah</label>
-                                        <input type="text" name="phone" id="phone" class="form-control">
+                                        <input type="text" name="phone" id="phone" class="form-control"
+                                            placeholder="0857xxxxx">
                                     </div>
                                     <div class="mb-2">
                                         <label for="address">Address Nasabah</label>
-                                        <textarea name="address" id="address" cols="30" rows="10" class="form-control"></textarea>
+                                        <textarea name="address" id="address" cols="30" rows="10" class="form-control" placeholder="Bandung"></textarea>
                                     </div>
                                     <div class="mb-2">
                                     </div>
@@ -146,7 +149,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-success float-end">Kirim</button>
                     </div>
                     </form>

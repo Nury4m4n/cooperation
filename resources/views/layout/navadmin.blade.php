@@ -16,6 +16,12 @@
                 <span class="links_name">Nasabah</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route('mandatory-saving.index') }}">
+                <i class='bx bx-credit-card-front'></i>
+                <span class="links_name">Simpanan Wajib</span>
+            </a>
+        </li>
         {{-- <li class="profile">
                 <div class="profile-details">
                     <img src="profile.jpg" alt="profileImg">
@@ -26,6 +32,7 @@
                 </div>
                 <i class='bx bx-log-out' id="log_out"></i>
             </li> --}}
+
     </ul>
 </div>
 

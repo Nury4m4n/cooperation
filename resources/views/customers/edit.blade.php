@@ -36,6 +36,7 @@
                 </div>
                 <div class="mb-3">
                     <input type="submit" value="Simpan" class="btn btn-success">
+                    <a href="{{ route('customer.index') }}" class="btn btn-danger">Batal</a>
                 </div>
             </form>
         </div>

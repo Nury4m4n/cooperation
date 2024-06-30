@@ -15,9 +15,9 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id(); //ID big integer pk ai
-            $table->string('code',4)->unique();
-            $table->string('name',30);
-            $table->string('phone',15)->nullable();
+            $table->string('code', 4)->unique();
+            $table->string('name', 30);
+            $table->string('phone', 15)->nullable();
             $table->text('address');
             $table->timestamps();
         });

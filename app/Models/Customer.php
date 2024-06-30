@@ -9,4 +9,9 @@ class Customer extends Model
 {
     use HasFactory;
     protected $fillable = ['code', 'name', 'phone', 'address'];
+
+    public function mandatorysavings()
+    {
+        return $this->hasMany(MandatorySaving::class, 'customer_id');
+    }
 }
