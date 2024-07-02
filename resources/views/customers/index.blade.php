@@ -95,11 +95,10 @@
                                     class="btn btn-info btn-sm m-1">Lihat</a>
                                 <a href="{{ route('customer.edit', $customer->id) }}"
                                     class="btn btn-warning btn-sm m-1">Edit</a>
-                                <form action="{{ route('customer.destroy', $customer->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm m-1">Hapus</button>
-                                </form>
+                                <button type="button" class="btn btn-danger btn-sm m-1"
+                                    onclick="confirmDeletion({{ $customer->id }})">
+                                    Hapus
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -131,6 +130,13 @@
                                             placeholder="Nuryaman">
                                     </div>
                                     <div class="mb-2">
+                                        <label for="gender">Jenis Kelamin</label>
+                                        <select name="gender" class="form-select">
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="perempuan">perempuan</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
                                         <label for="phone">Phone Nasabah</label>
                                         <input type="text" name="phone" id="phone" class="form-control"
                                             placeholder="0857xxxxx">
@@ -153,4 +159,37 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="confirmDeleteModalLabel">Konfirmasi Hapus</h5>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin menghapus data ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tidak</button>
+                    <form id="deleteForm" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-success">Ya</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function confirmDeletion(id) {
+            const deleteForm = document.getElementById('deleteForm');
+            deleteForm.action = `/customer/${id}`; // Sesuaikan URL sesuai dengan route Anda
+            const confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            confirmDeleteModal.show();
+        }
+    </script>
 @endsection

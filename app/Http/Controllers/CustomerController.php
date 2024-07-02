@@ -18,6 +18,7 @@ class CustomerController extends Controller
         $this->validate($request, [
             'code' => 'required|unique:customers|max:4',
             'name' => 'required|max:30',
+            'gender' => 'required',
             'address' => 'required',
             'phone' => 'numeric'
 
@@ -25,6 +26,7 @@ class CustomerController extends Controller
         $customer = new Customer();
         $customer->code = $request->code;
         $customer->name = $request->name;
+        $customer->gender = $request->gender;
         $customer->phone = $request->phone;
         $customer->address = $request->address;
 
@@ -57,11 +59,13 @@ class CustomerController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:30',
+            'gender' => 'required',
             'address' => 'required',
             'phone' => 'numeric'
         ]);
         $customer = Customer::find($request->id);
         $customer->name = $request->name;
+        $customer->gender = $request->gender;
         $customer->phone = $request->phone;
         $customer->address = $request->address;
         if ($customer->save()) {

@@ -14,6 +14,10 @@
                     <td>: {{ $customer->name }}</td>
                 </tr>
                 <tr>
+                    <th>gender</th>
+                    <td>: {{ $customer->gender }}</td>
+                </tr>
+                <tr>
                     <th>Telepon Pelanggan</th>
                     <td>: {{ $customer->phone }}</td>
                 </tr>

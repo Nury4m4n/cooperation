@@ -6,7 +6,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-success text-bold text-center" id="errorModalLabel">Sucsess</h5>
+                        <h5 class="modal-title text-success text-bold text-center" id="errorModalLabel">Success</h5>
                     </div>
                     <div class="modal-body text-success">
                         <p>{{ $message }}</p>
@@ -30,9 +30,8 @@
 
     <div class=" d-flex justify-content-center align-items-center text-center pt-5 pb-5">
         <img src="/img/logo.png" alt="" style="width: 6%;">
-        <h1> Simpanan Wajib</h1>
+        <h1>Simpanan Wajib</h1>
     </div>
-
 
     <div class="card p-2">
         <div class="card-header">
@@ -42,7 +41,7 @@
             </button>
         </div>
         <div class="card-body">
-            <table class="table  table-hover">
+            <table class="table table-hover">
                 <thead style="background-color: #143855;color:white;">
                     <tr class="text-center">
                         <th>No</th>
@@ -62,13 +61,10 @@
                             <td>{{ $ms->Customer->name }}</td>
                             <td>{{ $ms->amount }}</td>
                             <td class="d-flex justify-content-center">
-                                {{-- <a href="{{ route('mandatory-saving.show', $ms->id) }}"
-                                    class="btn btn-info btn-sm m-1 ">Lihat</a> --}}
-                                <form action="{{ route('mandatory-saving.destroy', $ms->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm m-1">Hapus</button>
-                                </form>
+                                <button type="button" class="btn btn-danger btn-sm m-1"
+                                    onclick="confirmDeletion({{ $ms->id }})">
+                                    Hapus
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -76,10 +72,6 @@
             </table>
         </div>
     </div>
-
-
-
-
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -97,8 +89,7 @@
                                     <label for="customer_id">Pilih Nasabah</label>
                                     <select name="customer_id" class="form-select">
                                         @foreach ($customers as $c)
-                                            <option value="{{ $c->id }}">{{ $c->code . ' - ' . $c->name }}
-                                            </option>
+                                            <option value="{{ $c->id }}">{{ $c->code . ' - ' . $c->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -120,6 +111,39 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Konfirmasi Hapus -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="confirmDeleteModalLabel">Konfirmasi Hapus</h5>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin menghapus data ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tidak</button>
+                    <form id="deleteForm" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-success">Ya</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
+
+    <script>
+        function confirmDeletion(id) {
+            const deleteForm = document.getElementById('deleteForm');
+            deleteForm.action = `/mandatory-saving/${id}`; // Sesuaikan URL sesuai dengan route Anda
+            const confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            confirmDeleteModal.show();
+        }
+    </script>
 @endsection
