@@ -41,8 +41,6 @@ class MandatorySavingController extends Controller
     }
     public function show($id)
     {
-        // $customers = Customer::find($id);
-        // return view('mandatory_savings.show', compact('customers'));
     }
 
     public function edit($id)

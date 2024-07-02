@@ -32,9 +32,14 @@
         <img src="/img/logo.png" alt="" style="width: 6%;">
         <h1> Simpanan Wajib</h1>
     </div>
-    <div class="card p-2 ">
+
+
+    <div class="card p-2">
         <div class="card-header">
-            <a href="{{ route('mandatory-saving.create') }}" class="btn btn-primary float-end"> Pendaftaran</a>
+            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                Simpanan Wajib
+            </button>
         </div>
         <div class="card-body">
             <table class="table  table-hover">
@@ -70,5 +75,51 @@
                 </tbody>
             </table>
         </div>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-center" style="background-color: #143855; color:white;">
+                    <h5 class="modal-title" id="staticBackdropLabel">Pendaftaran Nasabah</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{{ route('mandatory-saving.store') }}" method="post">
+                                @csrf
+                                <div class="mb-2">
+                                    <label for="customer_id">Pilih Nasabah</label>
+                                    <select name="customer_id" class="form-select">
+                                        @foreach ($customers as $c)
+                                            <option value="{{ $c->id }}">{{ $c->code . ' - ' . $c->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="amount">Jumlah</label>
+                                    <input type="text" name="amount" id="phone" class="form-control" value="1000000"
+                                        readonly>
+                                </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="card-footer float-end ">
+                                <a href="{{ route('mandatory-saving.index') }}" class="btn btn-danger">Batal</a>
+                                <button type="submit" class="btn btn-success ">Kirim</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     </div>
 @endsection
