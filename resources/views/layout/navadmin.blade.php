@@ -1,3 +1,29 @@
+<div class="d-flex justify-content-between align-items-center bg-light fixed-top" style="height: 70px; z-index: 1;">
+    <ul class="nav">
+    </ul>
+
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+    </ul>
+
+    <li class=" nav nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false">Dropdown</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/login">Login</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+    </li>
+</div>
+
+
 <div class="sidebar">
     <div class="logo-details">
         <div class="logo_name">N-COOP</div>

@@ -1,53 +1,75 @@
-@extends('layout.main')
+    @extends('layout.main')
 
-@section('content')
-    <div class=" d-flex justify-content-center align-items-center text-center pt-5 pb-5">
-        <img src="/img/logo.png" alt="" style="width: 6%;">
-        <h1>Data Nasabah</h1>
-    </div>
-    <div class="card">
-        <h5 class="card-header " style="background-color: #143855;color:white;">Kode Nasabah : #{{ $customer->code }}</h5>
-        <div class="card-body">
-            <table class="table">
-                <tr>
-                    <th>Nama Pelanggan</th>
-                    <td>: {{ $customer->name }}</td>
-                </tr>
-                <tr>
-                    <th>gender</th>
-                    <td>: {{ $customer->gender }}</td>
-                </tr>
-                <tr>
-                    <th>Telepon Pelanggan</th>
-                    <td>: {{ $customer->phone }}</td>
-                </tr>
-                <tr>
-                    <th>Alamat Pelanggan</th>
-                    <td>: {{ $customer->address }}</td>
-                </tr>
-            </table>
-            <div class="mb-2">
-                <h1>Riwayat Pembayaran Simpanan Wajib</h1>
-                <table class="table table-hover table-stripped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Jumlah</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($customer->mandatorySavings as $ms)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $ms->date }}</td>
-                                <td>{{ $ms->amount }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+    @section('content')
+        <div class="user text-light ">
+            <div class="container ">
+                <div class="row align-items-center">
+                    <div class="col-2">
+                        <div class="user-profil ">
+                            <img src="/img/hero.jpg" class="img-thumbnail">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="user-detail">
+                            <h1>{{ $customer->name }}</h1>
+                            <p><i class='bx bx-id-card'></i> {{ $customer->code }} <i class='bx bx-male-female'
+                                    style='color:#ffffff'></i> {{ $customer->gender }}
+                                <i class='bx bx-phone' style='color:#ffffff'></i> {{ $customer->phone }} <i
+                                    class='bx bxs-location-plus' style="color:#ffffff"></i> {{ $customer->address }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="{{ route('customer.index') }}" class="btn btn-primary">Kembali</a>
         </div>
-    </div>
+
+
+
+        <div class="row ">
+            <div class="col-sm-6 pt-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="/img/Simpanan-Wajib.jpg" class="img-thumbnail" " alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Simpanan Wajib</h5>
+                                                <p class="card-text">
+                                                    Totoal :Rp
+                                                    {{ number_format($customer->mandatorySavings->sum('amount'), 2, ',', '.') }}
+
+                                                    {{-- <small class="text-muted">Last updated {{ $customer->mandatorySavings->date }} </small> --}}
+                                                </p>
+                                                <a href="#" class="btn btn-primary">Log</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 pt-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/img/Simpanan-Wajib.jpg" class="img-fluid rounded-start" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Simpanan Wajib</h5>
+                                                <p class="card-text">
+                                                    Totoal :Rp
+                                                    {{ number_format($customer->mandatorySavings->sum('amount'), 2, ',', '.') }}
+
+                                                    {{-- <small class="text-muted">Last updated {{ $customer->mandatorySavings->date }} </small> --}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 @endsection

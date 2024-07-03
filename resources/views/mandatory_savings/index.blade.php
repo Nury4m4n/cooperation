@@ -59,7 +59,8 @@
                             <td>{{ $ms->date }}</td>
                             <td>{{ $ms->customer->code }}</td>
                             <td>{{ $ms->Customer->name }}</td>
-                            <td>{{ $ms->amount }}</td>
+                            <td> Rp {{ number_format($ms->amount) }}</td>
+
                             <td class="d-flex justify-content-center">
                                 <button type="button" class="btn btn-danger btn-sm m-1"
                                     onclick="confirmDeletion({{ $ms->id }})">

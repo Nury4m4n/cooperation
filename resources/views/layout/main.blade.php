@@ -20,7 +20,7 @@
 
         @include('layout.navadmin')
         @include('layout.navbar')
-        <div class="home-section"">
+        <div class="home-section pt-5"">
             @yield('content')
         </div>
 
