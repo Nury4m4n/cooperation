@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MandatorySavingController;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,5 +31,9 @@ Route::put('/customer/update', [CustomerController::class, 'update'])->name('cus
 Route::delete('/customer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
 Route::resource('/mandatory-saving', MandatorySavingController::class);
 
-Route::get('/login', [LoginController::class, 'index'])->name('login.index');
-Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
+Route::resource('/login', LoginController::class);
+Route::post('/login/authenticated', [LoginController::class, 'authenticated'])->name('login.authenticated');
+Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout');
+Route::get('/login', [LoginController::class, 'index'])->name('login.index')->middleware('guest');
+
+Route::resource('/register', RegisterController::class);

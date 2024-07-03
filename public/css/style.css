@@ -248,10 +248,7 @@
     font-family: "Montserrat", sans-serif;
 }
 
-body {
-    width: 100%;
-    min-height: 100vh;
-    padding: 0 10px;
+.loginregis {
     display: flex;
     justify-content: center;
     align-items: center;

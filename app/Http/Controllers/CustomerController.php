@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\MandatorySaving;
-use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller

@@ -1,42 +1,36 @@
-<!DOCTYPE html>
-<!-- Source Codes By CodingNepal - www.codingnepalweb.com -->
-<html lang="en">
+@extends('layout.main')
+@section('content')
+    <div class="loginregis">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Form in HTML and CSS | CodingNepal</title>
-    <link rel="stylesheet" href="css/style.css" />
-</head>
-
-<body>
-    <div class="login_form">
-        <!-- Login form container -->
-        <form action="#">
-            <h3>Log in </h3>
-
-            <!-- Email input box -->
-            <div class="input_box">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter email address" required />
-            </div>
-
-            <!-- Paswwrod input box -->
-            <div class="input_box">
-                <div class="password_title">
-                    <label for="password">Password</label>
-                    <a href="#">Forgot Password?</a>
+        <div class="login_form">
+            <!-- Login form container -->
+            <h3>Registration</h3>
+            <form action="{{ route('register.store') }}" method="post">
+                @csrf
+                <div class="input_box">
+                    <label for="name">Nama</label>
+                    <input type="text" name="name" id="name" placeholder="Enter name" required />
+                </div>
+                <div class="input_box">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Enter name" required />
                 </div>
 
-                <input type="password" id="password" placeholder="Enter your password" required />
-            </div>
-
-            <!-- Login button -->
-            <button type="submit">Log In</button>
-
-            <p class="sign_up">Don't have an account? <a href="/">Sign up</a></p>
-        </form>
+                <div class="input_box">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter email address" required />
+                </div>
+                <div class="input_box">
+                    <div class="password_title">
+                        <label for="password">Password</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required />
+                </div>
+                <!-- Registration button -->
+                <button type="submit">Register</button>
+                <p class="sign_up">Have an account? <a href="{{ route('login.index') }}">Login</a></p>
+            </form>
+        </div>
     </div>
-</body>
-
-</html>
+@endsection

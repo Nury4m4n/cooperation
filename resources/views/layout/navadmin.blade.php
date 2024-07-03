@@ -1,5 +1,6 @@
 <div class="d-flex justify-content-between align-items-center bg-light fixed-top" style="height: 70px; z-index: 1;">
     <ul class="nav">
+        <!-- Tambahkan item jika diperlukan -->
     </ul>
 
     <ul class="nav justify-content-center">
@@ -14,14 +15,28 @@
         </li>
     </ul>
 
-    <li class=" nav nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-            aria-expanded="false">Dropdown</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/login">Login</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-    </li>
+    <ul class="nav">
+        <li class="nav-item dropdown">
+            @auth
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Welcome back, {{ auth()->user()->name }}</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                    <li>
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button class="dropdown-item" type="submit">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            @else
+                <a class="nav-link" href="/login">Login</a>
+            @endauth
+        </li>
+    </ul>
 </div>
+
+
 
 
 <div class="sidebar">
