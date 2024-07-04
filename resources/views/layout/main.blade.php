@@ -18,7 +18,7 @@
 
     <body>
 
-        @include('layout.navadmin')
+        @include('layout.sidebar')
         @include('layout.navbar')
         <div class="home-section pt-5"">
             @yield('content')

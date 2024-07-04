@@ -25,7 +25,7 @@ class RegisterController extends Controller
         User::create($validatedData);
 
         // $request->session()->flash('succsess','Regitrasi Berhasil Silahkan Login');
-        return redirect(route('login.index'))->with('success', 'Regitrasi Berhasil Silahkan Login');
+        return redirect('/')->with('success', 'Regitrasi Berhasil Silahkan Login');
 
         //     $user = new User();
         //     $user->name = $request->name;

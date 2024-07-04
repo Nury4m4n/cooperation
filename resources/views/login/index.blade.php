@@ -1,5 +1,5 @@
-@extends('layout.main')
-@section('content')
+@extends('home.main')
+@section('home')
     @if (session()->has('loginError'))
         <div class="modal fade" id="success" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -52,6 +52,7 @@
             });
         </script>
     @endif
+
     <div class="loginregis">
 
         <div class="login_form">

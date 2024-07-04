@@ -1,44 +1,3 @@
-<div class="d-flex justify-content-between align-items-center bg-light fixed-top" style="height: 70px; z-index: 1;">
-    <ul class="nav">
-        <!-- Tambahkan item jika diperlukan -->
-    </ul>
-
-    <ul class="nav justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-    </ul>
-
-    <ul class="nav">
-        <li class="nav-item dropdown">
-            @auth
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                    aria-expanded="false">Welcome back, {{ auth()->user()->name }}</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                    <li>
-                        <form action="/logout" method="post">
-                            @csrf
-                            <button class="dropdown-item" type="submit">Logout</button>
-                        </form>
-                    </li>
-                </ul>
-            @else
-                <a class="nav-link" href="/login">Login</a>
-            @endauth
-        </li>
-    </ul>
-</div>
-
-
-
-
 <div class="sidebar">
     <div class="logo-details">
         <div class="logo_name">N-COOP</div>
@@ -46,7 +5,7 @@
     </div>
     <ul class="nav-list">
         <li>
-            <a href="/">
+            <a href="{{ route('customer.home') }}">
                 <i class='bx bx-home-heart'></i>
                 <span class="links_name">Dashboard</span>
             </a>

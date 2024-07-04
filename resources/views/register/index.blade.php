@@ -1,6 +1,6 @@
-@extends('layout.main')
-@section('content')
-    <div class="loginregis">
+@extends('home.main')
+@section('home')
+    <div class="regis">
 
         <div class="login_form">
             <!-- Login form container -->

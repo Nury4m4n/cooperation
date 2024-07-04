@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 75px;
+    background: #143855;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+nav .navbar {
+    background: #143855;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 90%;
+    margin: auto;
+    top: -20px;
+}
+
+nav .navbar .logo a {
+    color: #fff;
+    font-size: 27px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+nav .navbar .menu {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .menu li {
+    list-style: none;
+    padding: 1rem;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navbar .menu li a {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 20px;
+}
+
+section {
+    padding-top: 40px;
+
+}
+
+.hero .image img {
+    height: 400px;
+}
+
+
+
+
+
+/* Google Fonts Link */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Resetting default styling and setting font-family */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+
+.loginregis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.regis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login form styling */
+.login_form {
+    width: 100%;
+    max-width: 435px;
+    background: #fff;
+    border-radius: 6px;
+    padding: 41px 30px;
+    /* box-shadow: 0 10px 20px rgba(15, 10, 10, 0.15); */
+}
+
+.login_form h3 {
+    font-size: 20px;
+    text-align: center;
+}
+
+
+/* Input field styling */
+form .input_box input {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #DADAF2;
+    border-radius: 5px;
+    outline: none;
+    background: #F8F8FB;
+    font-size: 17px;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    transition: 0.2s ease;
+}
+
+form .input_box input:focus {
+    border-color: #626cd6;
+}
+
+form .input_box .password_title {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+form .input_box {
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: #626cd6;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Login button styling */
+form button {
+    width: 100%;
+    height: 56px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: #626CD6;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 28px;
+    transition: 0.3s ease;
+}
+
+form button:hover {
+    background: #4954d0;
+}
