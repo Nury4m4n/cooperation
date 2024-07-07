@@ -15,12 +15,15 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id(); //ID big integer pk ai
-            $table->string('code', 4)->unique();
+            // $table->string('code', 4)->unique();
+            $table->string('code', 4)->nullable();
             $table->string('name', 30);
             $table->string('gender');
             $table->string('phone', 15)->nullable();
             $table->text('address');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

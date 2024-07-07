@@ -44,7 +44,7 @@
         </ul>
         <ul class="nav">
             <li class="nav-item dropdown">
-                @auth
+                {{-- @auth
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                         aria-expanded="false">Welcome back, {{ auth()->user()->name }}</a>
                     <ul class="dropdown-menu">
@@ -56,20 +56,20 @@
                             </form>
                         </li>
                     </ul>
-                @else
-                    {{-- <h4>
+                @else --}}
+                {{-- <h4>
                         <a class="badge rounded-pill bg-light text-dark text-decoration-none"
                             href="{{ route('login.index') }}">Login<i class='bx bx-log-in-circle bx-burst'></i> </a>
                     </h4> --}}
-                    <h4>
+                <h4>
 
-                        <button type="button" class="badge rounded-pill bg-light text-dark text-decoration-none"
-                            data-bs-toggle="modal" data-bs-target="#loginModal">Login
-                            <i class='bx bx-log-in-circle bx-burst'></i> </a>
-                    </h4>
-                    </button>
-                    </h4>
-                @endauth
+                    <button type="button" class="badge rounded-pill bg-light text-dark text-decoration-none"
+                        data-bs-toggle="modal" data-bs-target="#loginModal">Login
+                        <i class='bx bx-log-in-circle bx-burst'></i> </a>
+                </h4>
+                </button>
+                </h4>
+                {{-- @endauth --}}
             </li>
         </ul>
 
@@ -184,19 +184,12 @@
                             @csrf
                             <div class="input_box">
                                 <label for="name">Nama</label>
-                                <input type="text" name="name" id="name" placeholder="Enter name"
-                                    required />
+                                <input type="text" name="name" id="name" placeholder="Enter name" required />
                             </div>
-                            <div class="input_box">
-                                <label for="username">Username</label>
-                                <input type="text" name="username" id="username" placeholder="Enter name"
-                                    required />
-                            </div>
-
                             <div class="input_box">
                                 <label for="email">Email</label>
-                                <input type="email" name="email" id="email"
-                                    placeholder="Enter email address" required />
+                                <input type="email" name="email" id="email" placeholder="Enter email address"
+                                    required />
                             </div>
                             <div class="input_box">
                                 <div class="password_title">

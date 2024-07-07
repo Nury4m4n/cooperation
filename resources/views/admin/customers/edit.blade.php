@@ -18,11 +18,15 @@
             Kode Nasabah : #{{ $customer->code }}
         </div>
         <div class="card-body">
-            <form action="{{ route('customer.update') }}" method="POST">
+            <form action="{{ route('admin-customer.update', $customer->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="id" value="{{ $customer->id }}">
 
+                <div class="mb-3">
+                    <input type="number" name="code" placeholder="Mauskan Kode" class="form-control"
+                        value="{{ $customer->code }}">
+                </div>
                 <div class="mb-3">
                     <input type="text" name="name" placeholder="Nama Pelanggan" class="form-control"
                         value="{{ $customer->name }}">
@@ -36,7 +40,7 @@
                 </div>
                 <div class="mb-3">
                     <input type="submit" value="Simpan" class="btn btn-success">
-                    <a href="{{ route('customer.index') }}" class="btn btn-danger">Batal</a>
+                    <a href="{{ route('admin-customer.index') }}" class="btn btn-danger">Batal</a>
                 </div>
             </form>
         </div>

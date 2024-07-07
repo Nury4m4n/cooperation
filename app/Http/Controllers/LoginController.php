@@ -20,7 +20,6 @@ class LoginController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
             return redirect()->intended(route('customer.index'));
         }
         return back()->with('loginError', 'Login Failed');
@@ -32,6 +31,6 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect(route('customer.index'));
     }
 }

@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use League\CommonMark\Reference\Reference;
 
-class CreateMandatorySavingsTable extends Migration
+class CreateMySavingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +13,7 @@ class CreateMandatorySavingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mandatory_savings', function (Blueprint $table) {
+        Schema::create('my_savings', function (Blueprint $table) {
             $table->id();
             $table->date('date');
             $table->unsignedBigInteger('customer_id');
@@ -31,6 +30,6 @@ class CreateMandatorySavingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mandatory_savings');
+        Schema::dropIfExists('my_savings');
     }
 }

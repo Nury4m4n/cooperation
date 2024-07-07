@@ -5,50 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\MandatorySaving;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Auth;
 
 class MandatorySavingController extends Controller
 {
 
     public function index()
     {
-        $customers = Customer::all();
-        $mandatorySavings = MandatorySaving::orderBy('id', 'DESC')->get();
-        return view('mandatory_savings.index', compact('customers', 'mandatorySavings'));
-    }
 
-    public function create()
-    {
-        $customers = Customer::all();
-        return view('mandatory_savings.create', compact('customers'));
+        $customer = Customer::where('user_id', Auth::id())->first();
+        $mandatorySavings = MandatorySaving::where('customer_id', $customer->id)->orderBy('id', 'DESC')->get();
+        return view('mandatory_savings.index', compact('customer', 'mandatorySavings'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'customer_id' => 'required',
             'amount' => 'required'
         ]);
+
+        $customer = Customer::where('user_id', Auth::id())->first();
+
         $mandatorySaving = new MandatorySaving();
-        $mandatorySaving->date = date('Y-m-d');
-        $mandatorySaving->customer_id = $request->customer_id;
+        $mandatorySaving->date = now()->toDateString();
+        $mandatorySaving->customer_id = $customer->id;
         $mandatorySaving->amount = $request->amount;
 
         if ($mandatorySaving->save()) {
             return redirect()->route('mandatory-saving.index')->with('success', 'Pembayaran Berhasil');
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->back()->with('error', 'Data Gagal di simpan');
         }
-    }
-    public function show($id)
-    {
-    }
-
-    public function edit($id)
-    {
-    }
-
-    public function update(Request $request)
-    {
     }
 
     public function destroy($id)

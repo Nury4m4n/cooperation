@@ -56,4 +56,7 @@
             </div>
         </div>
     </section>
+    <section id="about">
+
+    </section>
 @endsection
