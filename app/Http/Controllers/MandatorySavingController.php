@@ -12,7 +12,6 @@ class MandatorySavingController extends Controller
 
     public function index()
     {
-
         $customer = Customer::where('user_id', Auth::id())->first();
         $mandatorySavings = MandatorySaving::where('customer_id', $customer->id)->orderBy('id', 'DESC')->get();
         return view('mandatory_savings.index', compact('customer', 'mandatorySavings'));
@@ -32,9 +31,9 @@ class MandatorySavingController extends Controller
         $mandatorySaving->amount = $request->amount;
 
         if ($mandatorySaving->save()) {
-            return redirect()->route('mandatory-saving.index')->with('success', 'Pembayaran Berhasil');
+            return redirect()->route('mandatory-saving.index')->with('success', 'Data simpanan wajib berhasil disimpan.');
         } else {
-            return redirect()->back()->with('error', 'Data Gagal di simpan');
+            return redirect()->back()->with('error', 'Gagal menyimpan data simpanan wajib.');
         }
     }
 

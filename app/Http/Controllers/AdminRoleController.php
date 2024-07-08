@@ -8,11 +8,9 @@ use Illuminate\Http\Request;
 class AdminRoleController extends Controller
 {
 
-
     public function index()
     {
-
-        $users = User::orderBy('id', 'ASC')->get();;
+        $users = User::orderBy('id', 'ASC')->get();
         return view('admin.admin_role.index', compact('users'));
     }
 
@@ -26,21 +24,32 @@ class AdminRoleController extends Controller
         $this->validate($request, [
             'is_admin' => 'required|max:255',
         ]);
+
         $user = User::find($request->id);
+        if (!$user) {
+            return redirect()->route('admin-role.index')->with('error', 'User tidak ditemukan.');
+        }
+
         $user->is_admin = $request->is_admin;
+
         if ($user->save()) {
-            return redirect()->route('admin-role.index')->with('success', " User Berhasil Di perbaharui");
+            return redirect()->route('admin-role.index')->with('success', 'User berhasil diperbaharui.');
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->route('admin-role.index')->with('error', 'Gagal memperbaharui user.');
         }
     }
+
     public function destroy($id)
     {
         $user = User::find($id);
+        if (!$user) {
+            return redirect()->route('admin-role.index')->with('error', 'User tidak ditemukan.');
+        }
+
         if ($user->delete()) {
-            return redirect()->route('admin-role.index')->with('success', "User Berhasil Di Hapus");
+            return redirect()->route('admin-role.index')->with('success', 'User berhasil dihapus.');
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->route('admin-role.index')->with('error', 'Gagal menghapus user.');
         }
     }
 }

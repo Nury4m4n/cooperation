@@ -44,6 +44,18 @@
                 <span class="links_name">Simpanan Wajib</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route('my-loan.index') }}">
+                <i class='bx bx-credit-card-front'></i>
+                <span class="links_name">Pinjaman Ku</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin-my-loans.index') }}">
+                <i class='bx bx-credit-card-front'></i>
+                <span class="links_name">Pinjaman Ku</span>
+            </a>
+        </li>
     </ul>
 </div>
 

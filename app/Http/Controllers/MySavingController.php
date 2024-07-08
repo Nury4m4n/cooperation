@@ -19,24 +19,19 @@ class MySavingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'amount' => 'required'
+            'amount' => 'required|numeric'
         ]);
 
         $customer = Customer::where('user_id', Auth::id())->first();
-
-        // if (!$customer) {
-        //     return redirect()->back()->with('error', 'Customer tidak ditemukan');
-        // }
-
         $mySaving = new MySaving();
         $mySaving->date = now()->toDateString();
         $mySaving->customer_id = $customer->id;
         $mySaving->amount = $request->amount;
 
         if ($mySaving->save()) {
-            return redirect()->route('my-saving.index')->with('success', 'Pembayaran Berhasil');
+            return redirect()->route('my-saving.index')->with('success', 'Pembayaran Berhasil disimpan.');
         } else {
-            return redirect()->back()->with('error', 'Data Gagal di simpan');
+            return redirect()->back()->with('error', 'Gagal menyimpan pembayaran.');
         }
     }
 }

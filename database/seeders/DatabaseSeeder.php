@@ -36,14 +36,6 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        User::create([
-            'name' => 'Budi',
-            'email' => 'budi@gmail.com',
-            'password' => bcrypt('12345678'),
-            'is_admin' => false,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
         Customer::create([
             'code' => 'N001',
             'name' => 'Nuryaman',
@@ -65,18 +57,6 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
-        Customer::create([
-            'code' => 'N003',
-            'name' => 'Budi',
-            'gender' => 'Laki-Laki',
-            'phone' => '085797563983',
-            'address' => 'Bandung',
-            'user_id' => '1',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
         MandatorySaving::create([
             'customer_id' => '1',
             'date' => now()->toDateString(),

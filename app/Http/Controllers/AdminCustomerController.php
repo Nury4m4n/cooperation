@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MandatorySaving;
 use App\Models\Customer;
-use App\Models\User;
+use App\Models\MandatorySaving;
+use App\Models\MyLoan;
 use Illuminate\Http\Request;
 
 class AdminCustomerController extends Controller
 {
     public function create()
     {
-        return View('admin.customers.create');
+        return view('admin.customers.create');
     }
 
     public function store(Request $request)
@@ -21,9 +21,9 @@ class AdminCustomerController extends Controller
             'name' => 'required|max:30',
             'gender' => 'required',
             'address' => 'required',
-            'phone' => 'numeric'
-
+            'phone' => 'numeric',
         ]);
+
         $customer = new Customer();
         $customer->code = $request->code;
         $customer->name = $request->name;
@@ -32,27 +32,24 @@ class AdminCustomerController extends Controller
         $customer->address = $request->address;
 
         if ($customer->save()) {
-            return redirect()->route('admin-customer.index')->with('success', "Data Nasabah $customer->code Berhasil Di simpan");
+            return redirect()->route('admin-customer.index')->with('success', "Data Nasabah dengan kode $customer->code berhasil disimpan");
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->back()->with('error', 'Gagal menyimpan data nasabah');
         }
     }
 
     public function show($id)
     {
-        $mandatorySaving = MandatorySaving::find($id);
-
         $customer = Customer::find($id);
-        return view('admin.customers.show', compact('customer', 'mandatorySaving'));
+        $mandatorySaving = MandatorySaving::where('customer_id', $id)->get();
+        $myLoan = MyLoan::where('customer_id', $id)->get();
+
+        return view('admin.customers.show', compact('customer', 'mandatorySaving', 'myLoan'));
     }
 
     public function index()
     {
-        // if (auth()->guest() || auth()->user()->name !== 'Nuryaman') {
-        //     abort(403);
-        // }
-
-        $customers = Customer::orderBy('code', 'ASC')->get();;
+        $customers = Customer::orderBy('code', 'ASC')->get();
         return view('admin.customers.index', compact('customers'));
     }
 
@@ -67,25 +64,28 @@ class AdminCustomerController extends Controller
         $this->validate($request, [
             'name' => 'required|max:30',
             'address' => 'required',
-            'phone' => 'numeric'
+            'phone' => 'numeric',
         ]);
+
         $customer = Customer::find($request->id);
         $customer->name = $request->name;
         $customer->phone = $request->phone;
         $customer->address = $request->address;
+
         if ($customer->save()) {
-            return redirect()->route('customer.index')->with('success', "Data Nasabah $customer->code Berhasil Di perbaharui");
+            return redirect()->route('admin-customer.index')->with('success', "Data Nasabah dengan kode $customer->code berhasil diperbarui");
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->back()->with('error', 'Gagal memperbarui data nasabah');
         }
     }
+
     public function destroy($id)
     {
         $customer = Customer::find($id);
         if ($customer->delete()) {
-            return redirect()->route('customer.index')->with('success', "Data Nasabah $customer->code Berhasil Di Hapus");
+            return redirect()->route('admin-customer.index')->with('success', "Data Nasabah dengan kode $customer->code berhasil dihapus");
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->back()->with('error', 'Gagal menghapus data nasabah');
         }
     }
 }

@@ -2,13 +2,16 @@
 
 use App\Http\Controllers\AdminCustomerController;
 use App\Http\Controllers\AdminMandatorySavingController;
+use App\Http\Controllers\AdminMyLoanController;
 use App\Http\Controllers\AdminMySavingController;
 use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MandatorySavingController;
+use App\Http\Controllers\MyLoanController;
 use App\Http\Controllers\MySavingController;
 use App\Http\Controllers\RegisterController;
+use App\Models\MyLoan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,3 +68,10 @@ Route::resource('admin-mandatory-saving', AdminMandatorySavingController::class)
 Route::resource('/admin-customer', AdminCustomerController::class)->middleware('admin');
 
 Route::resource('/admin-role', AdminRoleController::class)->middleware('admin');
+
+Route::resource('/my-loan', MyLoanController::class);
+
+Route::get('/admin/my-loan', [AdminMyLoanController::class, 'index'])->name('admin-my-loans.index');
+Route::post('/admin/my-loan/{myLoan}/approve', [AdminMyLoanController::class, 'approve'])->name('admin-my-loans.approve');
+Route::post('/admin/my-loan/{myLoan}/reject', [AdminMyLoanController::class, 'reject'])->name('admin-my-loans.reject');
+Route::delete('/admin/my-loan/{myLoan}', [AdminMyLoanController::class, 'destroy'])->name('admin-my-loans.destroy');

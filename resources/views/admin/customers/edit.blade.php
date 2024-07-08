@@ -1,15 +1,6 @@
 @extends('layout.main')
 
 @section('content')
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <p>ERROR!!!</p>
-            @foreach ($errors->all() as $item)
-                <li>{{ $item }}</li>
-            @endforeach
-        </div>
-    @endif
-
     <div class="d-flex justify-content-center align-items-center text-center pt-5 pb-5">
         <img src="/img/logo.png" alt="" style="width: 6%;">
         <h1 class="ms-3">Edit Nasabah</h1>

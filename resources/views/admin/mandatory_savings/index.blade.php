@@ -1,33 +1,6 @@
 @extends('layout.main')
 
 @section('content')
-    @if ($message = Session::get('success'))
-        <div class="modal fade" id="success" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-success text-bold text-center" id="successModalLabel">Success</h5>
-                    </div>
-                    <div class="modal-body text-success">
-                        <p>{{ $message }}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                var successModal = new bootstrap.Modal(document.getElementById('success'), {
-                    backdrop: 'static',
-                    keyboard: false
-                });
-                successModal.show();
-            });
-        </script>
-    @endif
-
     <div class="d-flex justify-content-center align-items-center text-center pt-5 pb-5">
         <img src="/img/logo.png" alt="" style="width: 6%;">
         <h1>Simpanan Wajib</h1>
@@ -35,8 +8,7 @@
 
     <div class="card p-2">
         <div class="card-header">
-            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop">
+            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Simpanan Wajib
             </button>
         </div>
@@ -72,37 +44,6 @@
             </table>
         </div>
     </div>
-
-    @if (count($errors) > 0)
-        <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-danger" id="errorModalLabel"><i data-feather="x"></i>Error</h5>
-                    </div>
-                    <div class="modal-body text-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                var errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {
-                    backdrop: 'static',
-                    keyboard: false
-                });
-                errorModal.show();
-            });
-        </script>
-    @endif
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">

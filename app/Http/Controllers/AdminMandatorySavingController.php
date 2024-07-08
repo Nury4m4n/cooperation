@@ -11,7 +11,6 @@ class AdminMandatorySavingController extends Controller
 
     public function index()
     {
-
         $customers = Customer::all();
         $mandatorySavings = MandatorySaving::orderBy('id', 'DESC')->get();
         return view('admin.mandatory_savings.index', compact('customers', 'mandatorySavings'));
@@ -29,40 +28,53 @@ class AdminMandatorySavingController extends Controller
             'customer_id' => 'required',
             'amount' => 'required'
         ]);
+
         $mandatorySaving = new MandatorySaving();
         $mandatorySaving->date = date('Y-m-d');
         $mandatorySaving->customer_id = $request->customer_id;
         $mandatorySaving->amount = $request->amount;
 
         if ($mandatorySaving->save()) {
-            return redirect()->route('admin-mandatory-saving.index')->with('success', 'Pembayaran Berhasil');
+            return redirect()->route('admin-mandatory-saving.index')->with('success', 'Data Pembayaran Berhasil Disimpan');
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->back()->with('error', 'Gagal menyimpan data pembayaran');
         }
     }
+
     public function show($id)
     {
-        $mandatorySavings = MandatorySaving::find($id);
+        $mandatorySaving = MandatorySaving::find($id);
+        $customer = Customer::find($mandatorySaving->customer_id);
 
-        $customer = Customer::find($id);
-        return view('admin.mandatory_savings.show', compact('customer', 'mandatorySavings'));;
+        if (!$mandatorySaving) {
+            return redirect()->route('admin-mandatory-saving.index')->with('error', 'Data pembayaran tidak ditemukan');
+        }
+
+        return view('admin.mandatory_savings.show', compact('customer', 'mandatorySaving'));
     }
 
     public function edit($id)
     {
+        // Tambahkan logika edit jika diperlukan
     }
 
     public function update(Request $request)
     {
+        // Tambahkan logika update jika diperlukan
     }
 
     public function destroy($id)
     {
         $mandatorySaving = MandatorySaving::find($id);
+
+        if (!$mandatorySaving) {
+            return redirect()->route('admin-mandatory-saving.index')->with('error', 'Data pembayaran tidak ditemukan');
+        }
+
         if ($mandatorySaving->delete()) {
-            return redirect()->route('admin-mandatory-saving.index')->with('success', "Data Pembayaran Berhasil Di hapus");
+            return redirect()->route('admin-mandatory-saving.index')->with('success', 'Data Pembayaran Berhasil Dihapus');
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->back()->with('error', 'Gagal menghapus data pembayaran');
         }
     }
 }

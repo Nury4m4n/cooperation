@@ -11,7 +11,6 @@ class AdminMySavingController extends Controller
 
     public function index()
     {
-
         $customers = Customer::all();
         $mySavings = MySaving::orderBy('id', 'DESC')->get();
         return view('admin.my_saving.index', compact('customers', 'mySavings'));
@@ -29,23 +28,28 @@ class AdminMySavingController extends Controller
             'customer_id' => 'required',
             'amount' => 'required'
         ]);
+
         $mySaving = new MySaving();
         $mySaving->date = date('Y-m-d');
         $mySaving->customer_id = $request->customer_id;
         $mySaving->amount = $request->amount;
 
         if ($mySaving->save()) {
-            return redirect()->route('admin-my-saving.index')->with('success', 'Pembayaran Berhasil');
+            return redirect()->route('admin-my-saving.index')->with('success', 'Data Pembayaran Berhasil Disimpan');
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->route('admin-my-saving.index')->with('error', 'Gagal menyimpan data pembayaran');
         }
     }
+
     public function show($id)
     {
-        $mySavings = MySaving::find($id);
+        $mySaving = MySaving::find($id);
+        if (!$mySaving) {
+            return redirect()->route('admin-my-saving.index')->with('error', 'Data pembayaran tidak ditemukan.');
+        }
 
-        $customer = Customer::find($id);
-        return view('admin.my_saving.show', compact('customer', 'mySavings'));;
+        $customer = Customer::find($mySaving->customer_id);
+        return view('admin.my_saving.show', compact('customer', 'mySaving'));
     }
 
     public function edit($id)
@@ -59,10 +63,14 @@ class AdminMySavingController extends Controller
     public function destroy($id)
     {
         $mySaving = MySaving::find($id);
+        if (!$mySaving) {
+            return redirect()->route('admin-my-saving.index')->with('error', 'Data pembayaran tidak ditemukan.');
+        }
+
         if ($mySaving->delete()) {
-            return redirect()->route('admin-my-saving.index')->with('success', "Data Pembayaran Berhasil Di hapus");
+            return redirect()->route('admin-my-saving.index')->with('success', "Data Pembayaran Berhasil Dihapus");
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->route('admin-my-saving.index')->with('error', 'Gagal menghapus data pembayaran.');
         }
     }
 }

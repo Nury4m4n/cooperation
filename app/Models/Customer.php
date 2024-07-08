@@ -28,4 +28,8 @@ class Customer extends Model
     {
         return $this->hasMany(MySaving::class, 'customer_id');
     }
+    public function myLoans()
+    {
+        return $this->hasMany(MyLoan::class, 'customer_id');
+    }
 }

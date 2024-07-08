@@ -17,10 +17,10 @@
         </section>
 
         <!-- Bagian Produk Layanan Kami -->
-        <section id="layanan" class="py-5">
+        <section id="Services" class="py-5">
             <div class="container">
                 <div class="text-center pb-5">
-                    <h1>Produk Layanan Kami</h1>
+                    <h1>Services</h1>
                 </div>
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <div class="col mb-4">
@@ -66,7 +66,7 @@
         <section id="about" class="py-5" style="background-color: #f9f9f9;">
             <div class="container">
                 <div class="text-center pt-5 pb-5">
-                    <h1>Tentang Kami</h1>
+                    <h1>About</h1>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -93,7 +93,7 @@
         <section id="contact" class="py-5">
             <div class="container">
                 <div class="text-center pt-5 pb-5">
-                    <h1>Hubungi Kami</h1>
+                    <h1>contact</h1>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -133,7 +133,7 @@
             <div class="container">
                 <div class="row">
                     <!-- Informasi Kontak -->
-                    <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="col-md-5 mb-4 mb-md-0">
                         <h5>Kontak Kami</h5>
                         <ul class="list-unstyled">
                             <li><i class="bx bxs-map"></i> Jl. Soekarno Hatta No.456 40266 Bandung Jawa Barat </li>
@@ -142,17 +142,17 @@
                         </ul>
                     </div>
                     <!-- Tautan Cepat -->
-                    <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="col-md-3 ">
                         <h5>Tautan Cepat</h5>
                         <ul class="list-unstyled">
-                            <li><a href="#home" class="text-white">Beranda</a></li>
-                            <li><a href="#about" class="text-white">Tentang Kami</a></li>
-                            <li><a href="#layanan" class="text-white">Layanan</a></li>
-                            <li><a href="#contact" class="text-white">Hubungi Kami</a></li>
+                            <li><a href="#home" class="text-white">Home</a></li>
+                            <li><a href="#layanan" class="text-white">Services</a></li>
+                            <li><a href="#about" class="text-white">about</a></li>
+                            <li><a href="#contact" class="text-white">contact</a></li>
                         </ul>
                     </div>
                     <!-- Tautan Media Sosial -->
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <h5>Ikuti Kami</h5>
                         <div>
                             <a href="#" class="text-white me-2"><i class="bx bxl-facebook"></i></a>
@@ -160,6 +160,9 @@
                             <a href="#" class="text-white me-2"><i class="bx bxl-instagram"></i></a>
                             <a href="#" class="text-white"><i class="bx bxl-linkedin"></i></a>
                         </div>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="/img/nurademy.png" alt="" class="img-fluid" style="height: 100px">
                     </div>
                 </div>
                 <div class="row mt-3">

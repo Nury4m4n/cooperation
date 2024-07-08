@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Storage;
 use App\Models\Customer;
 use App\Models\MandatorySaving;
@@ -10,45 +11,39 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
-
     public function store(Request $request)
     {
-        // Validasi data dari request
         $validatedData = $request->validate([
-            'image' => 'nullable|image|file', // Tambahkan ukuran maksimum
+            'image' => 'image|file|max:10000',
             'code' => 'required|unique:customers|max:4',
             'name' => 'required|max:30',
             'gender' => 'required',
             'address' => 'required',
-            'phone' => 'nullable|numeric' // Tambahkan nullable jika phone opsional
+            'phone' => 'nullable|numeric',
         ]);
+
         $validatedData['user_id'] = auth()->user()->id;
 
         if ($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('profile');
         }
+
         Customer::create($validatedData);
 
-        return redirect(route('customer.index'))->with('success', 'Data Berhasil DI Update');
+        return redirect(route('customer.index'))->with('success', 'Data nasabah berhasil ditambahkan!');
     }
 
     public function index()
     {
         $userId = Auth::id();
         $customer = Customer::where('user_id', $userId)->first();
-
         $mandatorySavings = $customer ?
             MandatorySaving::where('customer_id', $customer->id)->orderBy('id', 'DESC')->get() : collect();
-
         $mySavings = $customer ?
             MySaving::where('customer_id', $customer->id)->orderBy('id', 'DESC')->get() : collect();
-
         $customers = Customer::where('user_id', $userId)->get();
-        // Ambil kode nasabah terakhir
         $lastCustomer = Customer::orderBy('id', 'desc')->first();
         $lastCode = $lastCustomer ? $lastCustomer->code : null;
-
-        // Generate kode nasabah berikutnya
         $nextCode = $this->generateNextCustomerCode($lastCode);
         return view('customers.index', compact('customers', 'mySavings', 'mandatorySavings', 'nextCode'));
     }
@@ -61,44 +56,52 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $customer)
     {
         $validatedData = $request->validate([
-            'image' => 'nullable|image|file',
+            'image' => 'image|file|max:10000',
             'name' => 'required|max:30',
             'gender' => 'required',
             'address' => 'required',
-            'phone' => 'nullable|numeric'
+            'phone' => 'nullable|numeric',
         ]);
 
-        $validatedData['user_id'] = auth()->user()->id;
+        if (!isset($validatedData['user_id'])) {
+            $validatedData['user_id'] = auth()->user()->id;
+        }
 
         if ($request->file('image')) {
             if ($customer->image) {
-                Storage::delete($customer->image);
+                Storage::disk('public')->delete($customer->image);
             }
             $validatedData['image'] = $request->file('image')->store('profile');
         }
+
         $customer->update($validatedData);
-        return redirect(route('customer.index'))->with('success', 'Data Berhasil Diperbarui');
+
+        return redirect(route('customer.index'))->with('success', 'Data nasabah berhasil diupdate!');
     }
+
 
     public function destroy($id)
     {
         $customer = Customer::find($id);
+
         if ($customer->delete()) {
-            return redirect()->route('customer.index')->with('success', "Data Nasabah Berhasil Di Hapus");
+            return redirect()->route('customer.index')->with('success', "Data nasabah berhasil dihapus!");
         } else {
-            dd('Data Gagal di simpan: ');
+            return redirect()->route('customer.index')->with('error', 'Terjadi kesalahan saat menghapus data nasabah.');
         }
     }
 
     private function generateNextCustomerCode($lastCode)
     {
         $prefix = 'N';
+
         if ($lastCode) {
-            $lastNumber = (int)substr($lastCode, 1); // Ambil bagian angka dari kode terakhir
-            $nextNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT); // Tambahkan 1 dan format dengan nol di depan
+            $lastNumber = (int) substr($lastCode, 1);
+            $nextNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
         } else {
-            $nextNumber = '001'; // Jika belum ada nasabah, mulai dari 001
+            $nextNumber = '001';
         }
+
         return $prefix . $nextNumber;
     }
 }

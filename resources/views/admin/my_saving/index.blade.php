@@ -1,33 +1,6 @@
 @extends('layout.main')
 
 @section('content')
-    @if ($message = Session::get('success'))
-        <div class="modal fade" id="success" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-success text-bold text-center" id="errorModalLabel">Success</h5>
-                    </div>
-                    <div class="modal-body text-success">
-                        <p>{{ $message }}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                var successModal = new bootstrap.Modal(document.getElementById('success'), {
-                    backdrop: 'static',
-                    keyboard: false
-                });
-                successModal.show();
-            });
-        </script>
-    @endif
-
     <div class="d-flex justify-content-center align-items-center text-center pt-5 pb-5">
         <img src="/img/logo.png" alt="" style="width: 6%;">
         <h1 class="ms-3">Tabungan Nasabah</h1>
@@ -35,8 +8,7 @@
 
     <div class="card p-2">
         <div class="card-header">
-            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop">
+            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Tabungan Nasabah
             </button>
         </div>

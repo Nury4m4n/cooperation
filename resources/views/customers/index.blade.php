@@ -201,15 +201,15 @@
                     <div class="modal-body">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('customer.update', ['customer' => $customer->id]) }}"
-                                    method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('customer.update', $customer->id) }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="id" value="{{ $customer->id }}">
                                     <div class="mb-2">
                                         <label for="name">Nama Lengkap</label>
                                         <input type="text" name="name" id="name" class="form-control"
-                                            placeholder="Nuryaman">
+                                            value="{{ $customer->name }}">
                                     </div>
                                     <div class="mb-2">
                                         <label for="gender">Jenis Kelamin</label>
@@ -232,7 +232,7 @@
                                     <div class="mb-2">
                                         <label for="formFileSm" class="form-label">Image</label>
                                         <input class="form-control form-control-sm" name="image" id="formFileSm"
-                                            type="file">
+                                            type="file" value="{{ $customer->image }}">
                                     </div>
                                     <div class="mb-2">
                                         <label for="address">Alamat</label>

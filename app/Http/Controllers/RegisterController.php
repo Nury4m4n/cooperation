@@ -11,31 +11,21 @@ class RegisterController extends Controller
     {
         return view('register.index');
     }
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:8'
         ]);
 
         $validatedData['password'] = bcrypt($validatedData['password']);
 
-        User::create($validatedData);
-
-        // $request->session()->flash('succsess','Regitrasi Berhasil Silahkan Login');
-        return redirect('/')->with('success', 'Regitrasi Berhasil Silahkan Login');
-
-        //     $user = new User();
-        //     $user->name = $request->name;
-        //     $user->username = $request->username;
-        //     $user->email = $request->email;
-        //     $user->password = $request->password;
-
-        //     if ($user->save()) {
-        //         return view('customers.index');
-        //     } else {
-        //         dd('gagal');
-        //     }
+        if (User::create($validatedData)) {
+            return redirect('/')->with('success', 'Registrasi berhasil. Silahkan login.');
+        } else {
+            return redirect()->back()->with('error', 'Registrasi gagal. Silahkan coba lagi.');
+        }
     }
 }
