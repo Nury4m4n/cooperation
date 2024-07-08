@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminCustomerController;
 use App\Http\Controllers\AdminMandatorySavingController;
 use App\Http\Controllers\AdminMySavingController;
+use App\Http\Controllers\AdminRoleController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MandatorySavingController;
@@ -45,8 +46,6 @@ Route::get('/customer/home', function () {
     return view('layout.dashboard');
 })->name('customer.home')->middleware('auth');
 
-
-
 Route::resource('/register', RegisterController::class);
 
 Route::resource('/customer', CustomerController::class)->middleware('auth');
@@ -57,12 +56,12 @@ Route::post('/login/authenticated', [LoginController::class, 'authenticated'])->
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
-
-
 Route::resource('/my-saving', MySavingController::class)->middleware('auth');
 
 Route::resource('admin-my-saving', AdminMySavingController::class)->middleware('admin');
 
 Route::resource('admin-mandatory-saving', AdminMandatorySavingController::class)->middleware('admin');
 
-Route::resource('/admin-customer', AdminCustomerController::class);
+Route::resource('/admin-customer', AdminCustomerController::class)->middleware('admin');
+
+Route::resource('/admin-role', AdminRoleController::class)->middleware('admin');

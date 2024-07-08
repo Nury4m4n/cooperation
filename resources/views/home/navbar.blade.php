@@ -1,81 +1,22 @@
-{{-- <nav>
-    <div class="navbar">
-        <div class="logo"><a href="#">N_COOP</a></div>
-        <ul class="menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#layanan">Layanan</a></li>
-            <li><a href="#Category">Category</a></li>
-            <li><a href="#Contact">Contact</a></li>
-        </ul>
-        <ul class="nav">
-            <li class="nav-item dropdown">
-                @auth
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Welcome back, {{ auth()->user()->name }}</a>
-                    <ul class="dropdown-menu">
-                        <li>
-
-                            <form action="/logout" method="post">
-                                @csrf
-                                <button class="dropdown-item" type="submit">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                @else
-                    <h4>
-                        <a class="badge rounded-pill bg-light text-dark text-decoration-none"
-                            href="{{ route('login.index') }}">Login<i class='bx bx-log-in-circle bx-burst'></i> </a>
-                    </h4>
-@endauth
-</li>
-</ul>
-</nav> --}}
-
-
-
 <nav>
     <div class="navbar">
         <div class="logo"><a href="#">N_COOP</a></div>
         <ul class="menu">
             <li><a href="#home">Home</a></li>
             <li><a href="#layanan">Layanan</a></li>
-            <li><a href="#Category">Category</a></li>
-            <li><a href="#Contact">Contact</a></li>
+            <li><a href="#about">Abut</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         <ul class="nav">
-            <li class="nav-item dropdown">
-                {{-- @auth
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-expanded="false">Welcome back, {{ auth()->user()->name }}</a>
-                    <ul class="dropdown-menu">
-                        <li>
-
-                            <form action="/logout" method="post">
-                                @csrf
-                                <button class="dropdown-item" type="submit">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                @else --}}
-                {{-- <h4>
-                        <a class="badge rounded-pill bg-light text-dark text-decoration-none"
-                            href="{{ route('login.index') }}">Login<i class='bx bx-log-in-circle bx-burst'></i> </a>
-                    </h4> --}}
-                <h4>
-
-                    <button type="button" class="badge rounded-pill bg-light text-dark text-decoration-none"
-                        data-bs-toggle="modal" data-bs-target="#loginModal">Login
-                        <i class='bx bx-log-in-circle bx-burst'></i> </a>
-                </h4>
+            <li class="nav-item">
+                <button type="button" class="badge rounded-pill bg-light text-dark text-decoration-none"
+                    data-bs-toggle="modal" data-bs-target="#loginModal">Login
+                    <i class='bx bx-log-in-circle bx-burst'></i>
                 </button>
-                </h4>
-                {{-- @endauth --}}
             </li>
         </ul>
-
+    </div>
 </nav>
-
-
 
 
 @if (session()->has('loginError'))

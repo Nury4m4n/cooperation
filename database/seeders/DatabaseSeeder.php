@@ -6,6 +6,7 @@ use App\Models\MandatorySaving;
 use Illuminate\Database\Seeder;
 use App\Models\MySaving;
 use App\Models\User;
+use App\Models\Customer;
 use GuzzleHttp\Promise\Create;
 
 class DatabaseSeeder extends Seeder
@@ -17,81 +18,137 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
 
-
-        MandatorySaving::create([
-            'user_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
+        User::create([
+            'name' => 'Nuryaman',
+            'email' => 'nury4m4n@gmail.com',
+            'password' => bcrypt('12345678'),
+            'is_admin' => true,
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
-        MandatorySaving::create([
+        User::create([
+            'name' => 'Agus',
+            'email' => 'agus@gmail.com',
+            'password' => bcrypt('12345678'),
+            'is_admin' => false,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        User::create([
+            'name' => 'Budi',
+            'email' => 'budi@gmail.com',
+            'password' => bcrypt('12345678'),
+            'is_admin' => false,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        Customer::create([
+            'code' => 'N001',
+            'name' => 'Nuryaman',
+            'gender' => 'Laki-Laki',
+            'phone' => '085797563983',
+            'address' => 'Bandung',
+            'user_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        Customer::create([
+            'code' => 'N002',
+            'name' => 'Agus',
+            'gender' => 'Laki-Laki',
+            'phone' => '085797565983',
+            'address' => 'Bandung',
             'user_id' => '2',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
-            'updated_at' => now(),
+            'updated_at' => now()
         ]);
-        MandatorySaving::create([
-            'user_id' => '3',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'user_id' => '4',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
+
+        Customer::create([
+            'code' => 'N003',
+            'name' => 'Budi',
+            'gender' => 'Laki-Laki',
+            'phone' => '085797563983',
+            'address' => 'Bandung',
             'user_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        MandatorySaving::create([
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MandatorySaving::create([
-            'user_id' => '5',
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MandatorySaving::create([
-            'user_id' => '6',
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MandatorySaving::create([
-            'user_id' => '7',
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MandatorySaving::create([
-            'user_id' => '8',
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MandatorySaving::create([
-            'user_id' => '9',
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MandatorySaving::create([
-            'user_id' => '10',
+            'customer_id' => '2',
+            'date' => now()->toDateString(),
+            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        MandatorySaving::create([
+            'customer_id' => '2',
+            'date' => now()->toDateString(),
+            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        MandatorySaving::create([
+            'customer_id' => '2',
+            'date' => now()->toDateString(),
+            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        MandatorySaving::create([
+            'customer_id' => '2',
+            'date' => now()->toDateString(),
+            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        MandatorySaving::create([
+            'customer_id' => '2',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
@@ -99,91 +156,81 @@ class DatabaseSeeder extends Seeder
         ]);
 
         MySaving::create([
-            'user_id' => '1',
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MySaving::create([
-            'user_id' => '2',
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MySaving::create([
-            'user_id' => '3',
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MySaving::create([
-            'user_id' => '4',
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MySaving::create([
-            'user_id' => '1',
+            'customer_id' => '1',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MySaving::create([
-            'user_id' => '5',
+            'customer_id' => '2',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MySaving::create([
-            'user_id' => '6',
+            'customer_id' => '2',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MySaving::create([
-            'user_id' => '7',
+            'customer_id' => '2',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MySaving::create([
-            'user_id' => '8',
+            'customer_id' => '2',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MySaving::create([
-            'user_id' => '9',
+            'customer_id' => '2',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         MySaving::create([
-            'user_id' => '10',
+            'customer_id' => '2',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-
-
-        // User::create([
-        //     'name'=>'Nuryaman',
-        //     'username'=>'Yaman',
-        //     'email'=>'nury4m4nn@gmail.com',
-        //     'password'=>bcrypt('12345678')
-        // ]);
-
-
     }
 }

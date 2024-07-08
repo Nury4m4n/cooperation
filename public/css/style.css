@@ -1,5 +1,5 @@
 /* Google Font Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 *,
@@ -9,10 +9,6 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-
-
-
-
 
 .sidebar {
     position: fixed;
@@ -27,7 +23,7 @@
 }
 
 .sidebar.open {
-    width: 200px;
+    width: 250px;
 }
 
 .sidebar .logo-details {
@@ -37,7 +33,6 @@
     position: relative;
 }
 
-
 .sidebar .logo-details .logo_name {
     font-family: 'Great Vibes';
     color: #fff;
@@ -46,7 +41,6 @@
     opacity: 0;
     transition: all 0.5s ease;
 }
-
 
 .sidebar.open .logo-details .logo_name {
     opacity: 1;
@@ -58,8 +52,6 @@
     right: 0;
     transform: translateY(-50%);
     font-size: 22px;
-    transition: all 0.4s ease;
-    font-size: 23px;
     text-align: center;
     cursor: pointer;
     transition: all 0.5s ease;
@@ -133,66 +125,109 @@
     border-radius: 12px;
 }
 
-.sidebar li.profile {
-    position: fixed;
-    height: 60px;
-    width: 78px;
-    left: 0;
-    bottom: -8px;
-    padding: 10px 14px;
-    background: #1d1b31;
-    transition: all 0.5s ease;
-    overflow: hidden;
+.dropdown {
+    position: relative;
 }
 
-.sidebar.open li.profile {
-    width: 250px;
-}
-
-.sidebar li .profile-details {
+.dropdown a {
+    cursor: pointer;
     display: flex;
     align-items: center;
-    flex-wrap: nowrap;
+    justify-content: space-between;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-.sidebar li img {
-    height: 45px;
-    width: 45px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-right: 10px;
+.dropdown a:hover {
+    background: #FFF;
+    color: #11101D;
 }
 
-.sidebar li.profile .name,
-.sidebar li.profile .job {
-    font-size: 15px;
-    font-weight: 400;
-    color: #fff;
-    white-space: nowrap;
-}
-
-.sidebar li.profile .job {
-    font-size: 12px;
-}
-
-.sidebar .profile #log_out {
+.dropdown-menu {
+    display: none;
     position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    background: #1d1b31;
+    left: 0;
+    top: 100%;
     width: 100%;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 0px;
-    transition: all 0.5s ease;
+    background: #143855;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
 }
 
-.sidebar.open .profile #log_out {
-    width: 50px;
-    background: none;
+.dropdown-menu li {
+    left: 30px;
+    padding: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+    background: #FFF;
+    color: #11101D;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown.open .dropdown-menu {
+    display: block;
+    animation: dropdown-fade-in 0.3s ease;
+}
+
+.dropdown a .arrow {
+    font-size: 18px;
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    background: #143855;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
+    transform-origin: center top;
+    /* menetapkan asal transformasi */
+}
+
+.dropdown.open .dropdown-menu {
+    display: block;
+    animation: dropdown-fade-in 0.3s ease;
+}
+
+@keyframes dropdown-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scaleY(0.8);
+        /* skala awal */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+        /* skala saat terbuka */
+    }
+}
 
 .home-section {
     position: relative;
@@ -204,17 +239,15 @@
     padding: 5px;
 }
 
-
 .sidebar.open~.home-section {
-    left: 200px;
-    width: calc(100% - 200px);
+    left: 250px;
+    width: calc(100% - 250px);
 }
-
-
 
 .user {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 40vh;
     background-color: #11101D;
 }
@@ -223,4 +256,5 @@
     width: 200px;
     height: 200px;
     border-radius: 100%;
+    object-fit: cover;
 }

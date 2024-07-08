@@ -19,18 +19,18 @@
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
-                var errorModal = new bootstrap.Modal(document.getElementById('success'), {
+                var successModal = new bootstrap.Modal(document.getElementById('success'), {
                     backdrop: 'static',
                     keyboard: false
                 });
-                errorModal.show();
+                successModal.show();
             });
         </script>
     @endif
 
-    <div class=" d-flex justify-content-center align-items-center text-center pt-5 pb-5">
+    <div class="d-flex justify-content-center align-items-center text-center pt-5 pb-5">
         <img src="/img/logo.png" alt="" style="width: 6%;">
-        <h1>Tabungan Nasabah</h1>
+        <h1 class="ms-3">Tabungan Nasabah</h1>
     </div>
 
     <div class="card p-2">
@@ -41,38 +41,40 @@
             </button>
         </div>
         <div class="card-body">
-            <table class="table table-hover">
-                <thead style="background-color: #143855;color:white;">
-                    <tr class="text-center">
-                        <th>No</th>
-                        <th>Tanggal Bayar</th>
-                        <th>Kode Nasabah</th>
-                        <th>Nama Nasabah</th>
-                        <th>Jumlah</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
-                    @foreach ($mySavings as $ms)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $ms->date }}</td>
-                            <td>{{ $ms->customer->code }}</td>
-                            <td>{{ $ms->Customer->name }}</td>
-                            <td> Rp {{ number_format($ms->amount) }}</td>
-
-                            <td class="d-flex justify-content-center">
-                                <button type="button" class="btn btn-danger btn-sm m-1"
-                                    onclick="confirmDeletion({{ $ms->id }})">
-                                    Hapus
-                                </button>
-                            </td>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead style="background-color: #143855;color:white;">
+                        <tr class="text-center">
+                            <th>No</th>
+                            <th>Tanggal Bayar</th>
+                            <th>Kode Nasabah</th>
+                            <th>Nama Nasabah</th>
+                            <th>Jumlah</th>
+                            <th>Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach ($mySavings as $ms)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $ms->date }}</td>
+                                <td>{{ $ms->customer->code }}</td>
+                                <td>{{ $ms->customer->name }}</td>
+                                <td>Rp {{ number_format($ms->amount) }}</td>
+                                <td class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-danger btn-sm m-1"
+                                        onclick="confirmDeletion({{ $ms->id }})">
+                                        <i class='bx bx-trash'></i>Hapus
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -96,13 +98,13 @@
                                 </div>
                                 <div class="mb-2">
                                     <label for="amount">Jumlah</label>
-                                    <input type="text" name="amount" id="phone" class="form-control" value="10000">
+                                    <input type="text" name="amount" id="amount" class="form-control" value="10000">
                                 </div>
                         </div>
                         <div class="mb-2">
-                            <div class="card-footer float-end ">
+                            <div class="card-footer float-end">
                                 <a href="{{ route('admin-my-saving.index') }}" class="btn btn-danger">Batal</a>
-                                <button type="submit" class="btn btn-success ">Kirim</button>
+                                <button type="submit" class="btn btn-success">Kirim</button>
                             </div>
                         </div>
                         </form>
@@ -138,7 +140,7 @@
     <script>
         function confirmDeletion(id) {
             const deleteForm = document.getElementById('deleteForm');
-            deleteForm.action = `/my-saving/${id}`; // Sesuaikan URL sesuai dengan route Anda
+            deleteForm.action = `/admin-my-saving/${id}`; // Sesuaikan URL sesuai dengan route Anda
             const confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'), {
                 backdrop: 'static',
                 keyboard: false

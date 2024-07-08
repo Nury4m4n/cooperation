@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Models\Customer;
 use App\Models\MandatorySaving;
 use App\Models\MySaving;
@@ -10,43 +10,27 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
-    public function create()
-    {
-        return View('customers.create');
-    }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        // Validasi data dari request
+        $validatedData = $request->validate([
+            'image' => 'nullable|image|file', // Tambahkan ukuran maksimum
             'code' => 'required|unique:customers|max:4',
             'name' => 'required|max:30',
             'gender' => 'required',
             'address' => 'required',
-            'phone' => 'numeric'
-
+            'phone' => 'nullable|numeric' // Tambahkan nullable jika phone opsional
         ]);
-        $customer = new Customer();
-        $customer->user_id = auth()->user()->id;
-        $customer->code = $request->code;
-        $customer->name = $request->name;
-        $customer->gender = $request->gender;
-        $customer->phone = $request->phone;
-        $customer->address = $request->address;
+        $validatedData['user_id'] = auth()->user()->id;
 
-        if ($customer->save()) {
-            return redirect()->route('customer.index')->with('success', "Data Nasabah $customer->code Berhasil Di simpan");
-        } else {
-            dd('Data Gagal di simpan: ');
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('profile');
         }
-    }
-    public function show($id)
-    {
-        $mandatorySaving = MandatorySaving::find($id);
+        Customer::create($validatedData);
 
-        $customer = Customer::find($id);
-        return view('customers.show', compact('customer', 'mandatorySaving'));
+        return redirect(route('customer.index'))->with('success', 'Data Berhasil DI Update');
     }
-
 
     public function index()
     {
@@ -66,10 +50,6 @@ class CustomerController extends Controller
 
         // Generate kode nasabah berikutnya
         $nextCode = $this->generateNextCustomerCode($lastCode);
-
-
-
-
         return view('customers.index', compact('customers', 'mySavings', 'mandatorySavings', 'nextCode'));
     }
 
@@ -78,31 +58,27 @@ class CustomerController extends Controller
         return view('customers.edit_modal', compact('customer'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Customer $customer)
     {
-        $this->validate($request, [
-            'name' => 'required',
+        $validatedData = $request->validate([
+            'image' => 'nullable|image|file',
+            'name' => 'required|max:30',
             'gender' => 'required',
             'address' => 'required',
-            'phone' => 'numeric'
+            'phone' => 'nullable|numeric'
         ]);
-        // Generate kode nasabah otomatis
-        $lastCustomer = Customer::orderBy('id', 'desc')->first();
-        $lastCode = $lastCustomer ? $lastCustomer->code : null;
-        $nextCode = $this->generateNextCustomerCode($lastCode);
 
-        $customer = Customer::find($request->id);
-        $customer->name = $request->name;
-        $customer->gender = $request->gender;
-        $customer->phone = $request->phone;
-        $customer->address = $request->address;
-        if ($customer->save()) {
-            return redirect()->route('customer.index')->with('success', "Data Nasabah  Berhasil Diperbarui");
-        } else {
-            dd('Data Gagal di simpan: ');
+        $validatedData['user_id'] = auth()->user()->id;
+
+        if ($request->file('image')) {
+            if ($customer->image) {
+                Storage::delete($customer->image);
+            }
+            $validatedData['image'] = $request->file('image')->store('profile');
         }
+        $customer->update($validatedData);
+        return redirect(route('customer.index'))->with('success', 'Data Berhasil Diperbarui');
     }
-
 
     public function destroy($id)
     {

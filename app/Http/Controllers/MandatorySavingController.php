@@ -38,13 +38,4 @@ class MandatorySavingController extends Controller
         }
     }
 
-    public function destroy($id)
-    {
-        $mandatorySaving = MandatorySaving::find($id);
-        if ($mandatorySaving->delete()) {
-            return redirect()->route('mandatory-saving.index')->with('success', "Data Pembayaran Berhasil Di hapus");
-        } else {
-            dd('Data Gagal di simpan: ');
-        }
-    }
 }

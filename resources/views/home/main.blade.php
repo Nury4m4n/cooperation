@@ -19,7 +19,7 @@
 <body>
 
     @include('home.navbar')
-    <div class="home-section pt-5">
+    <div class="home-section ">
         @yield('home')
     </div>
 

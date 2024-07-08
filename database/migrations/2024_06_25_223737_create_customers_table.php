@@ -20,6 +20,7 @@ class CreateCustomersTable extends Migration
             $table->string('name', 30);
             $table->string('gender');
             $table->string('phone', 15)->nullable();
+            $table->string('image')->nullable();
             $table->text('address');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

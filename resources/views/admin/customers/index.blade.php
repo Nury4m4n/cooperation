@@ -92,12 +92,13 @@
                             <td>{{ $customer->phone }}</td>
                             <td class="d-flex justify-content-center">
                                 <a href="{{ route('admin-customer.show', $customer->id) }}"
-                                    class="btn btn-info btn-sm m-1">Lihat</a>
+                                    class="btn btn-warning btn-sm m-1"><i class='bx bx-show-alt'></i>Lihat</a>
                                 <a href="{{ route('admin-customer.edit', $customer->id) }}"
-                                    class="btn btn-warning btn-sm m-1">Edit</a>
+                                    class="btn btn-primary btn-sm m-1 text-light"><i class='bx bxs-edit'
+                                        style='color:#fdfdfd'></i>Edit</a>
                                 <button type="button" class="btn btn-danger btn-sm m-1"
                                     onclick="confirmDeletion({{ $customer->id }})">
-                                    Hapus
+                                    <i class='bx bx-trash'></i>Hapus
                                 </button>
                             </td>
                         </tr>

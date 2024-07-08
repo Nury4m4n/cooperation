@@ -63,7 +63,7 @@
                             <td class="d-flex justify-content-center">
                                 <button type="button" class="btn btn-danger btn-sm m-1"
                                     onclick="confirmDeletion({{ $ms->id }})">
-                                    Hapus
+                                    <i class='bx bx-trash'></i>Hapus
                                 </button>
                             </td>
                         </tr>

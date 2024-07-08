@@ -5,32 +5,26 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    font-size: 16px;
-    line-height: 1.6;
-}
 
 nav {
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
-    height: 75px;
+    height: 80px;
     background: #143855;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-
-
 nav .navbar {
-    background: #143855;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 100%;
     max-width: 90%;
     margin: auto;
-    top: -20px;
+    padding: 0 20px;
+    top: -10px;
 }
 
 nav .navbar .logo a {
@@ -47,10 +41,11 @@ nav .navbar .menu {
 
 .navbar .menu li {
     list-style: none;
-    padding: 1rem;
     margin-top: 20px;
+    padding: 1rem;
     padding-bottom: 20px;
 }
+
 
 .navbar .menu li a {
     color: #fff;
@@ -59,20 +54,36 @@ nav .navbar .menu {
     text-decoration: none;
 }
 
-.hero {
+.nav {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    padding-top: 20px;
 }
 
-section {
-    padding-top: 40px;
 
+
+
+#home {
+    padding: 60px 0;
 }
 
-.hero .image img {
-    height: 400px;
+#home .text-center h1,
+#home .text-center h2 {
+    margin: 0;
+}
+
+
+@media (max-width: 767px) {
+    #home .row {
+        flex-direction: column-reverse;
+    }
+
+    #home .hero-image {
+        margin: 20px auto;
+    }
+
+    #home .text-center {
+        margin-bottom: 20px;
+    }
 }
 
 
