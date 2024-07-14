@@ -2,20 +2,20 @@
 
 @section('content')
     <div class="d-flex justify-content-center align-items-center text-center pt-5 pb-5">
-        <img src="/img/logo.png" alt="" style="width: 6%;">
-        <h1 class="ms-3">Tabungan Nasabah</h1>
+        <img src="/img/logo.png" alt="Logo" style="width: 6%;">
+        <h1 class="ms-3">Pengajuan Pinjaman</h1>
     </div>
 
     <div class="card p-2">
         <div class="card-header">
-            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#loanModal">
                 Pengajuan Pinjaman
             </button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead style="background-color: #143855;color:white;">
+                    <thead style="background-color: #143855; color:white;">
                         <tr class="text-center">
                             <th>No</th>
                             <th>Tanggal Pengajuan</th>
@@ -35,9 +35,7 @@
                                         <span class="badge bg-warning text-dark">{{ $loan->status }}</span>
                                     @elseif ($loan->status == 'approved')
                                         <span class="badge bg-success">{{ $loan->status }}</span>
-                                    @elseif ($loan->status == 'rejected')
-                                        <span class="badge bg-danger">{{ $loan->status }}</span>
-                                    @elseif ($loan->status == 'cancelled')
+                                    @elseif ($loan->status == 'rejected' || $loan->status == 'cancelled')
                                         <span class="badge bg-danger">{{ $loan->status }}</span>
                                     @endif
                                 </td>
@@ -62,80 +60,80 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="loanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="loanModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header text-center" style="background-color: #143855; color:white;">
-                    <h5 class="modal-title" id="staticBackdropLabel">Form Pengajuan Pinjaman</h5>
+                <div class="modal-header" style="background-color: #143855; color:white;">
+                    <h5 class="modal-title" id="loanModalLabel">Form Pengajuan Pinjaman</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <form action="{{ route('my-loan.store') }}" method="post">
-                                @csrf
-                                <div class="mb-3" hidden>
-                                    <input type="number" name="customer_id" id="customer_id" class="form-control"
-                                        value="{{ $customer->id }}" readonly>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="amount" class="form-label">Jumlah Pinjaman (Rp)</label>
-                                    <input type="number" name="amount" id="amount" class="form-control"
-                                        placeholder="Masukkan jumlah pinjaman" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="loan_purpose" class="form-label">Tujuan Pinjaman</label>
-                                    <textarea name="loan_purpose" id="loan_purpose" cols="30" rows="5" class="form-control"
-                                        placeholder="Jelaskan tujuan penggunaan pinjaman"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="card-footer float-end">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                                        <button type="submit" class="btn btn-success">Ajukan Pinjaman</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Konfirmasi Batal -->
-    <div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="confirmCancelModalLabel">Konfirmasi Pembatalan Pengajuan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin membatalkan pengajuan pinjaman ini?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tidak</button>
-                    <form id="cancelForm" action="{{ route('my-loan.destroy', ':id') }}" method="post">
+                    <form action="{{ route('my-loan.store') }}" method="post">
                         @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-secondary">Ya</button>
+                        <input type="hidden" name="customer_id" value="{{ $customer->id }}">
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Jumlah Pinjaman (Rp)</label>
+                            <input type="number" name="amount" id="amount" class="form-control"
+                                placeholder="Masukkan jumlah pinjaman" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loan_purpose" class="form-label">Tujuan Pinjaman</label>
+                            <textarea name="loan_purpose" id="loan_purpose" cols="30" rows="5" class="form-control"
+                                placeholder="Jelaskan tujuan penggunaan pinjaman"></textarea>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success">Ajukan Pinjaman</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- SweetAlert script -->
     <script>
         function cancelLoan(id) {
-            const cancelForm = document.getElementById('cancelForm');
-            cancelForm.action = cancelForm.action.replace(':id', id); // Mengganti placeholder ':id' dengan id yang sesuai
-            const confirmCancelModal = new bootstrap.Modal(document.getElementById('confirmCancelModal'), {
-                backdrop: 'static',
-                keyboard: false
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success me-2',
+                    cancelButton: 'btn btn-danger me-2'
+                },
+                buttonsStyling: false
             });
-            confirmCancelModal.show();
+            swalWithBootstrapButtons.fire({
+                title: 'Konfirmasi Pembatalan',
+                text: 'Apakah Anda yakin ingin membatalkan pengajuan pinjaman ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, batalkan!',
+                cancelButtonText: 'Tidak, tetap ajukan',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = `{{ route('my-loan.destroy', '') }}/${id}`;
+                    form.innerHTML = `
+                        @csrf
+                        @method('DELETE')
+                    `;
+                    document.body.appendChild(form);
+                    form.submit();
+                    swalWithBootstrapButtons.fire(
+                        'Dibatalkan!',
+                        'Pengajuan pinjaman Anda telah dibatalkan.',
+                        'success'
+                    );
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        'Dibatalkan',
+                        'Pengajuan pinjaman Anda tetap diajukan :)',
+                        'error'
+                    );
+                }
+            });
         }
     </script>
 @endsection

@@ -48,6 +48,6 @@ class MyLoanController extends Controller
         $loan->status_pelunasan = 'cancelled';
         $loan->save();
 
-        return redirect()->back()->with('success', 'Pengajuan pinjaman berhasil dibatalkan.');
+        return redirect()->back();
     }
 }

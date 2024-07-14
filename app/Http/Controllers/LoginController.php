@@ -22,7 +22,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended(route('customer.index'));
         }
-        return back()->with('loginError', 'Login Failed');
+        return back()->with('error', 'Login Failed');
     }
     public function logout(Request $request)
     {

@@ -43,7 +43,6 @@ class AdminCustomerController extends Controller
         $customer = Customer::find($id);
         $mandatorySaving = MandatorySaving::where('customer_id', $id)->get();
         $myLoan = MyLoan::where('customer_id', $id)->get();
-
         return view('admin.customers.show', compact('customer', 'mandatorySaving', 'myLoan'));
     }
 

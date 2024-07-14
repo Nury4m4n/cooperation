@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\MandatorySaving;
 use Illuminate\Database\Seeder;
 use App\Models\MySaving;
-use App\Models\User;
+    use App\Models\User;
 use App\Models\Customer;
 use GuzzleHttp\Promise\Create;
 
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Nuryaman',
             'email' => 'nury4m4n@gmail.com',
             'password' => bcrypt('12345678'),
-            'is_admin' => true,
+            // 'is_admin' => true,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Agus',
             'email' => 'agus@gmail.com',
             'password' => bcrypt('12345678'),
-            'is_admin' => false,
+            // 'is_admin' => false,
             'created_at' => now(),
             'updated_at' => now()
         ]);

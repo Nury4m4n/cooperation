@@ -57,7 +57,9 @@
                                 @endif
                             </small>
                             <a class="btn btn-primary btn-sm mt-2 d-block"
-                                href="{{ route('admin-mandatory-saving.show', $customer->id) }}">
+
+
+                            href="{{ route('admin-mandatory-saving.show', $customer->id) }}">
                                 <i class='bx bx-list-ol' style='color:#ffffff'></i> Lihat Log
                             </a>
                         </div>
@@ -102,7 +104,7 @@
                         <div>
                             <h5 class="card-title">Pinjaman</h5>
                             <p class="card-text">
-                                Total: Rp {{ $customer->myLoans->amount }}
+                                {{-- Total: Rp {{ $customer->myLoans->amount }} --}}
                             </p>
                         </div>
                         <div>
