@@ -76,3 +76,4 @@ Route::post('/admin/my-loan/{myLoan}/approve', [AdminMyLoanController::class, 'a
 Route::post('/admin/my-loan/{myLoan}/reject', [AdminMyLoanController::class, 'reject'])->name('admin-my-loans.reject')->middleware('admin');
 Route::delete('/admin/my-loan/{myLoan}', [AdminMyLoanController::class, 'destroy'])->name('admin-my-loans.destroy')->middleware('admin');
 Route::post('/admin-my-loans/pay/{id}', [AdminMyLoanController::class, 'pay'])->name('admin-my-loans.pay');
+Route::get('/admin/my-loan/show/{id}', [AdminMyLoanController::class, 'show'])->name('admin-my-loans.show')->middleware('admin');

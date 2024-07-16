@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\MandatorySaving;
 use Illuminate\Database\Seeder;
 use App\Models\MySaving;
-use App\Models\User;
+    use App\Models\User;
 use App\Models\Customer;
 use GuzzleHttp\Promise\Create;
 
@@ -95,5 +95,6 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
     }
 }

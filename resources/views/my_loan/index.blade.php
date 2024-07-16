@@ -31,7 +31,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $loan->created_at->format('d-m-Y H:i:s') }}</td>
-                                <td>Rp {{ number_format($loan->amount) }}</td>
+                                <td>Rp {{ number_format($loan->amount, 0, ',', '.') }}</td>
                                 <td>
                                     @if ($loan->status == 'pending')
                                         <span class="badge bg-warning text-dark">{{ ucfirst($loan->status) }}</span>

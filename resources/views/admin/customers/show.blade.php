@@ -7,9 +7,9 @@
                 <div class="col-md-2">
                     <div class="user-profil">
                         @if ($customer->image)
-                            <img src="/img/logo.png" class="img-thumbnail">
-                        @else
                             <img src="{{ asset('storage/' . $customer->image) }}" class="img-thumbnail">
+                        @else
+                            <img src="/img/logo.png" class="img-thumbnail">
                         @endif
                     </div>
                 </div>
@@ -42,12 +42,12 @@
                         <div>
                             <h5 class="card-title">Simpanan Wajib</h5>
                             <p class="card-text">
-                                Total: Rp {{ number_format($customer->mandatorySavings->sum('amount')) }}
+                                Total: Rp {{ number_format($customer->mandatorySavings->sum('amount'), 0, ',', '.') }}
                             </p>
                         </div>
                         <div>
                             @php
-                                $sortedSavings = $customer->mySavings->sortByDesc('date');
+                                $sortedSavings = $customer->mandatorySavings->sortByDesc('date');
                                 $lastSaving = $sortedSavings->first();
                             @endphp
                             <small class="text-muted"><i class='bx bx-calendar' style='color:rgba(95,84,84,0.55)'></i>
@@ -57,15 +57,14 @@
                                 @endif
                             </small>
                             <a class="btn btn-primary btn-sm mt-2 d-block"
-
-
-                            href="{{ route('admin-mandatory-saving.show', $customer->id) }}">
+                                href="{{ route('admin-mandatory-saving.show', $customer->id) }}" target="blank">
                                 <i class='bx bx-list-ol' style='color:#ffffff'></i> Lihat Log
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col mb-4">
                 <div class="card h-100">
                     <img src="/img/tabungan.jpg" class="card-img-top" alt="Gambar Tabungan Nasabah"
@@ -74,12 +73,12 @@
                         <div>
                             <h5 class="card-title">Tabungan</h5>
                             <p class="card-text">
-                                Total: Rp {{ number_format($customer->mandatorySavings->sum('amount')) }}
+                                Total: Rp {{ number_format($customer->mandatorySavings->sum('amount'), 0, ',', '.') }}
                             </p>
                         </div>
                         <div>
                             @php
-                                $sortedSavings = $customer->mySavings->sortByDesc('date');
+                                $sortedSavings = $customer->mandatorySavings->sortByDesc('date');
                                 $lastSaving = $sortedSavings->first();
                             @endphp
                             <small class="text-muted"><i class='bx bx-calendar' style='color:rgba(95,84,84,0.55)'></i> Last
@@ -89,13 +88,14 @@
                                 @endif
                             </small>
                             <a class="btn btn-primary btn-sm mt-2 d-block"
-                                href="{{ route('admin-mandatory-saving.show', $customer->id) }}">
+                                href="{{ route('admin-mandatory-saving.show', $customer->id) }}"target="blank">
                                 <i class='bx bx-list-ol' style='color:#ffffff'></i> Lihat Log
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col mb-4">
                 <div class="card h-100">
                     <img src="/img/pinjaman.jpg" class="card-img-top" alt="Gambar Pinjaman Nasabah"
@@ -104,22 +104,24 @@
                         <div>
                             <h5 class="card-title">Pinjaman</h5>
                             <p class="card-text">
-                                {{-- Total: Rp {{ $customer->myLoans->amount }} --}}
+                                Total: Rp {{ number_format($customer->myLoans->sum('remaining_amount'), 0, ',', '.') }}
                             </p>
                         </div>
                         <div>
                             @php
-                                $sortedSavings = $customer->mySavings->sortByDesc('date');
-                                $lastSaving = $sortedSavings->first();
+                                $sortedLoans = $customer->myLoans->sortByDesc('created_at');
+                                $lastLoan = $sortedLoans->first();
                             @endphp
                             <small class="text-muted"><i class='bx bx-calendar' style='color:rgba(95,84,84,0.55)'></i>
                                 Last updated
-                                @if ($lastSaving)
-                                    {{ $lastSaving->date }}
+                                @if ($lastLoan)
+                                    {{ $lastLoan->created_at->format('Y-m-d ') }}
+                                @else
+                                    N/A
                                 @endif
                             </small>
                             <a class="btn btn-primary btn-sm mt-2 d-block"
-                                href="{{ route('admin-my-saving.show', $customer->id) }}">
+                                href="{{ route('admin-my-loans.show', $customer->id) }}"target="blank">
                                 <i class='bx bx-list-ol' style='color:#ffffff'></i> Lihat Log
                             </a>
                         </div>

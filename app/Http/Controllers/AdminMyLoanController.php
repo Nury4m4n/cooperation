@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MyLoan;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class AdminMyLoanController extends Controller
@@ -44,7 +45,7 @@ class AdminMyLoanController extends Controller
         }
 
         $loan->status = 'rejected';
-        $loan->repayment_status = 'rejected'; 
+        $loan->repayment_status = 'rejected';
 
         if ($loan->save()) {
             return redirect()->route('admin-my-loans.index')->with('success', 'Pengajuan pinjaman ditolak.');
@@ -86,4 +87,19 @@ class AdminMyLoanController extends Controller
             return redirect()->route('admin-my-loans.index')->with('error', 'Gagal memproses pembayaran.');
         }
     }
+    public function show($id)
+    {
+        $myLoan = MyLoan::find($id);
+
+        if (!$myLoan) {
+            return redirect()->route('admin-my-loans.index')->with('error', 'Data pembayaran tidak ditemukan.');
+        }
+
+        $customer = Customer::find($myLoan->customer_id); // Mengambil customer terkait
+
+        return view('admin.loans.show', compact('customer', 'myLoan'));
+    }
+
+
+
 }
