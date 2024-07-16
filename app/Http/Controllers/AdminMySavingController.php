@@ -12,7 +12,10 @@ class AdminMySavingController extends Controller
     public function index()
     {
         $customers = Customer::all();
-        $mySavings = MySaving::orderBy('id', 'DESC')->get();
+        $mySavings = MySaving::with('customer')
+        ->orderBy('date', 'desc')
+        ->paginate(10);
+
         return view('admin.my_saving.index', compact('customers', 'mySavings'));
     }
 

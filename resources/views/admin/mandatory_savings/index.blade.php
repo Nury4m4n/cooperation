@@ -9,7 +9,7 @@
     <div class="card p-2">
         <div class="card-header">
             <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Simpanan Wajib
+                Tambah Simpanan Wajib
             </button>
         </div>
         <div class="card-body">
@@ -68,13 +68,13 @@
                                 </div>
                                 <div class="mb-2">
                                     <label for="amount">Jumlah</label>
-                                    <input type="text" name="amount" id="amount" class="form-control" value="1000000"
+                                    <input type="text" name="amount" id="amount" class="form-control" value="10000"
                                         readonly>
                                 </div>
                         </div>
                         <div class="mb-2">
                             <div class="card-footer float-end ">
-                                <a href="{{ route('mandatory-saving.index') }}" class="btn btn-danger">Batal</a>
+                                <a href="{{ route('admin-mandatory-saving.index') }}" class="btn btn-danger">Batal</a>
                                 <button type="submit" class="btn btn-success ">Kirim</button>
                             </div>
                         </div>
@@ -85,37 +85,26 @@
         </div>
     </div>
 
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="confirmDeleteModalLabel">Konfirmasi Hapus</h5>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus data ini?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tidak</button>
-                    <form id="deleteForm" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-success">Ya</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
         function confirmDeletion(id) {
-            const deleteForm = document.getElementById('deleteForm');
-            deleteForm.action = `/admin-mandatory-saving/${id}`; // Sesuaikan URL sesuai dengan route Anda
-            const confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'), {
-                backdrop: 'static',
-                keyboard: false
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: "Apakah Anda yakin ingin menghapus data ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const deleteForm = document.createElement('form');
+                    deleteForm.action = `/admin-mandatory-saving/${id}`; // Sesuaikan URL sesuai dengan route Anda
+                    deleteForm.method = 'post';
+                    deleteForm.innerHTML = '@csrf @method('DELETE')';
+                    document.body.appendChild(deleteForm);
+                    deleteForm.submit();
+                }
             });
-            confirmDeleteModal.show();
         }
     </script>
 @endsection

@@ -39,7 +39,7 @@
             </li>
             <li>
                 <a href="{{ route('admin-my-saving.index') }}">
-                    <i class='bx bxs-credit-card'></i>
+                    <i class='bx bxs-bank'></i>
                     <span class="links_name">Kelola Tabungan </span>
                 </a>
             </li>
@@ -51,7 +51,7 @@
             </li>
             <li>
                 <a href="{{ route('admin-my-loans.index') }}">
-                    <i class='bx bx-credit-card-front'></i>
+                    <i class='bx bx-money-withdraw'></i>
                     <span class="links_name">Kelola Pinjaman </span>
                 </a>
 
@@ -66,7 +66,7 @@
             </li>
             <li>
                 <a href="{{ route('my-saving.index') }}">
-                    <i class='bx bxs-credit-card'></i>
+                    <i class='bx bxs-bank'></i>
                     <span class="links_name">Tabungan </span>
                 </a>
             </li>
@@ -78,7 +78,7 @@
             </li>
             <li>
                 <a href="{{ route('my-loan.index') }}">
-                    <i class='bx bx-credit-card-front'></i>
+                    <i class='bx bx-money-withdraw'></i>
                     <span class="links_name">Pinjaman Ku</span>
                 </a>
             </li>

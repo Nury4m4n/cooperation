@@ -69,9 +69,10 @@ Route::resource('/admin-customer', AdminCustomerController::class)->middleware('
 
 Route::resource('/admin-role', AdminRoleController::class)->middleware('admin');
 
-Route::resource('/my-loan', MyLoanController::class);
+Route::resource('/my-loan', MyLoanController::class)->middleware('auth');
 
-Route::get('/admin/my-loan', [AdminMyLoanController::class, 'index'])->name('admin-my-loans.index');
-Route::post('/admin/my-loan/{myLoan}/approve', [AdminMyLoanController::class, 'approve'])->name('admin-my-loans.approve');
-Route::post('/admin/my-loan/{myLoan}/reject', [AdminMyLoanController::class, 'reject'])->name('admin-my-loans.reject');
-Route::delete('/admin/my-loan/{myLoan}', [AdminMyLoanController::class, 'destroy'])->name('admin-my-loans.destroy');
+Route::get('/admin/my-loan', [AdminMyLoanController::class, 'index'])->name('admin-my-loans.index')->middleware('admin');
+Route::post('/admin/my-loan/{myLoan}/approve', [AdminMyLoanController::class, 'approve'])->name('admin-my-loans.approve')->middleware('admin');
+Route::post('/admin/my-loan/{myLoan}/reject', [AdminMyLoanController::class, 'reject'])->name('admin-my-loans.reject')->middleware('admin');
+Route::delete('/admin/my-loan/{myLoan}', [AdminMyLoanController::class, 'destroy'])->name('admin-my-loans.destroy')->middleware('admin');
+Route::post('/admin-my-loans/pay/{id}', [AdminMyLoanController::class, 'pay'])->name('admin-my-loans.pay');

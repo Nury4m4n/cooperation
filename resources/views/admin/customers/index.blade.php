@@ -42,7 +42,7 @@
             </table>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal Pendaftaran -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -95,37 +95,32 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-danger" id="confirmDeleteModalLabel">Konfirmasi Hapus</h5>
-                </div>
-                <div class="modal-body">
-                    Apakah Anda yakin ingin menghapus data ini?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tidak</button>
-                    <form id="deleteForm" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-success">Ya</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         function confirmDeletion(id) {
-            const deleteForm = document.getElementById('deleteForm');
-            deleteForm.action = `/admin-customer/${id}`; // Sesuaikan URL sesuai dengan route Anda
-            const confirmDeleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'), {
-                backdrop: 'static',
-                keyboard: false
-            });
-            confirmDeleteModal.show();
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda tidak akan dapat mengembalikan data ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Create a form to submit the delete request
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = `/admin-customer/${id}`;
+                    form.innerHTML = `
+                        @csrf
+                        @method('DELETE')
+                    `;
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            })
         }
     </script>
 @endsection

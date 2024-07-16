@@ -16,7 +16,7 @@
                 @method('PUT')
                 <input type="hidden" name="id" value="{{ $customer->id }}">
 
-                <div class="mb-3">
+                <div class="mb-3" hidden>
                     <label for="code" class="form-label">Kode</label>
                     <input type="number" name="code" id="code" placeholder="Masukkan Kode" class="form-control"
                         value="{{ $customer->code }}">

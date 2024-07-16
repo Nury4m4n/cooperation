@@ -21,6 +21,8 @@
                             <th>Tanggal Pengajuan</th>
                             <th>Jumlah Pinjaman</th>
                             <th>Status Pinjaman</th>
+                            <th>Pembayaran</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -32,11 +34,25 @@
                                 <td>Rp {{ number_format($loan->amount) }}</td>
                                 <td>
                                     @if ($loan->status == 'pending')
-                                        <span class="badge bg-warning text-dark">{{ $loan->status }}</span>
+                                        <span class="badge bg-warning text-dark">{{ ucfirst($loan->status) }}</span>
                                     @elseif ($loan->status == 'approved')
-                                        <span class="badge bg-success">{{ $loan->status }}</span>
-                                    @elseif ($loan->status == 'rejected' || $loan->status == 'cancelled')
-                                        <span class="badge bg-danger">{{ $loan->status }}</span>
+                                        <span class="badge bg-success">{{ ucfirst($loan->status) }}</span>
+                                    @elseif ($loan->status == 'rejected')
+                                        <span class="badge bg-danger">{{ ucfirst($loan->status) }}</span>
+                                    @elseif ($loan->status == 'cancelled')
+                                        <span class="badge bg-danger">{{ ucfirst($loan->status) }}</span>
+                                    @endif
+                                </td>
+                                <td>Rp {{ number_format($loan->remaining_amount, 2) }}</td>
+                                <td>
+                                    @if ($loan->repayment_status == 'unpaid' && $loan->status == 'pending')
+                                        <span class="badge bg-warning text-dark">pending</span>
+                                    @elseif($loan->repayment_status == 'unpaid')
+                                        <span class="badge bg-warning text-dark">Belum Lunas</span>
+                                    @elseif ($loan->repayment_status == 'paid')
+                                        <span class="badge bg-success">Lunas</span>
+                                    @elseif ($loan->repayment_status == 'cancelled')
+                                        <span class="badge bg-danger">cancelled</span>
                                     @endif
                                 </td>
                                 <td class="d-flex justify-content-center">

@@ -15,4 +15,8 @@ class MyLoan extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_id');
     }
+    public function paymentHistories()
+    {
+        return $this->hasMany(PaymentHistory::class);
+    }
 }

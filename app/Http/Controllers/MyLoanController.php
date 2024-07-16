@@ -45,7 +45,7 @@ class MyLoanController extends Controller
             return redirect()->back()->with('error', 'Pengajuan pinjaman tidak dapat dibatalkan.');
         }
         $loan->status = 'cancelled';
-        $loan->status_pelunasan = 'cancelled';
+        $loan->repayment_status = 'cancelled';
         $loan->save();
 
         return redirect()->back();

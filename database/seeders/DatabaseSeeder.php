@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\MandatorySaving;
 use Illuminate\Database\Seeder;
 use App\Models\MySaving;
-    use App\Models\User;
+use App\Models\User;
 use App\Models\Customer;
 use GuzzleHttp\Promise\Create;
 
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Nuryaman',
             'email' => 'nury4m4n@gmail.com',
             'password' => bcrypt('12345678'),
-            // 'is_admin' => true,
+            'is_admin' => true,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -57,71 +57,9 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
         MandatorySaving::create([
             'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'customer_id' => '2',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'customer_id' => '2',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'customer_id' => '2',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'customer_id' => '2',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
@@ -142,64 +80,9 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
         MySaving::create([
             'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MySaving::create([
-            'customer_id' => '2',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MySaving::create([
-            'customer_id' => '2',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MySaving::create([
-            'customer_id' => '2',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MySaving::create([
-            'customer_id' => '2',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MySaving::create([
-            'customer_id' => '2',
             'date' => now()->toDateString(),
             'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
             'created_at' => now(),
