@@ -19,7 +19,7 @@
 <body>
 
     @include('home.navbar')
-    <div class="home-section ">
+    <div class="home-section pt-5 ">
         @yield('home')
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -8,6 +8,7 @@ use App\Models\MandatorySaving;
 use App\Models\MySaving;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\MyLoan;
 
 class CustomerController extends Controller
 {
@@ -41,11 +42,13 @@ class CustomerController extends Controller
             MandatorySaving::where('customer_id', $customer->id)->orderBy('id', 'DESC')->get() : collect();
         $mySavings = $customer ?
             MySaving::where('customer_id', $customer->id)->orderBy('id', 'DESC')->get() : collect();
+        $myLoans = $customer ?
+            MyLoan::where('customer_id', $customer->id)->orderBy('id', 'DESC')->get() : collect();
         $customers = Customer::where('user_id', $userId)->get();
         $lastCustomer = Customer::orderBy('id', 'desc')->first();
         $lastCode = $lastCustomer ? $lastCustomer->code : null;
         $nextCode = $this->generateNextCustomerCode($lastCode);
-        return view('customers.index', compact('customers', 'mySavings', 'mandatorySavings', 'nextCode'));
+        return view('customers.index', compact('customers', 'mySavings', 'mandatorySavings', 'nextCode', 'myLoans'));
     }
 
     public function edit(Customer $customer)

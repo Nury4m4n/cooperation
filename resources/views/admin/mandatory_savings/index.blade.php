@@ -55,7 +55,7 @@
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('mandatory-saving.store') }}" method="post">
+                            <form action="{{ route('admin-mandatory-saving.store') }}" method="post">
                                 @csrf
                                 <div class="mb-2">
                                     <label for="customer_id">Pilih Nasabah</label>

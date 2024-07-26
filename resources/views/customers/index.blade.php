@@ -58,70 +58,92 @@
         </div>
     </div>
 
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 pt-2">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="/img/Simpanan wajib.jpg" class="img-thumbnail" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Simpanan Wajib</h5>
-                                    @if ($mandatorySavings->sum('amount') > 0)
-                                        <p class="card-text">
-                                            Total :Rp {{ number_format($mandatorySavings->sum('amount')) }}
-                                        </p>
-                                        @php
-                                            $sortedSavings = $mandatorySavings->sortByDesc('date');
-                                            $lastSaving = $sortedSavings->first();
-                                        @endphp
-                                        <small class="text-muted"><i class='bx bx-calendar'
-                                                style='color:rgba(95,84,84,0.55)'></i>Last updated
-                                            @if ($lastSaving)
-                                                {{ $lastSaving->date }}
-                                            @endif
-                                        </small>
-                                    @else
-                                        <p>Belum ada pemasukan</p>
-                                    @endif
-                                </div>
-                            </div>
+    <div class="container">
+        <div class="text-center pb-5">
+            <h1>Services</h1>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img src="/img/simpanan Wajib.jpg" class="card-img-top " alt="Gambar Simpanan Wajib"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title">Simpanan Wajib</h5>
+                            <p class="card-text">
+                                Total: Rp {{ number_format($mandatorySavings->sum('amount'), 0, ',', '.') }}
+                            </p>
+                        </div>
+                        <div>
+                            @php
+                                $sortedSavings = $mandatorySavings->sortByDesc('date');
+                                $lastSaving = $sortedSavings->first();
+                            @endphp
+                            <small class="text-muted"><i class='bx bx-calendar' style='color:rgba(95,84,84,0.55)'></i>
+                                Last updated
+                                @if ($lastSaving)
+                                    {{ $lastSaving->date }}
+                                @endif
+                            </small>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 pt-2">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="/img/tabungan.jpg" class="img-thumbnail" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Tabungan</h5>
-                                    @if ($mySavings->sum('amount') > 0)
-                                        <p class="card-text">
-                                            Total :Rp {{ number_format($mySavings->sum('amount')) }}
-                                        </p>
-                                        @php
-                                            $sortedSavings = $mySavings->sortByDesc('date');
-                                            $lastSaving = $sortedSavings->first();
-                                        @endphp
-                                        <small class="text-muted"><i class='bx bx-calendar'
-                                                style='color:rgba(95,84,84,0.55)'></i>Last updated
-                                            @if ($lastSaving)
-                                                {{ $lastSaving->date }}
-                                            @endif
-                                        </small>
-                                    @else
-                                        <p>Belum ada pemasukan</p>
-                                    @endif
-                                </div>
-                            </div>
+
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img src="/img/tabungan.jpg" class="card-img-top" alt="Gambar Tabungan Nasabah"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title">Tabungan</h5>
+                            <p class="card-text">
+                                Total: Rp {{ number_format($mandatorySavings->sum('amount'), 0, ',', '.') }}
+                            </p>
+                        </div>
+                        <div>
+                            @php
+                                $sortedSavings = $mandatorySavings->sortByDesc('date');
+                                $lastSaving = $sortedSavings->first();
+                            @endphp
+                            <small class="text-muted"><i class='bx bx-calendar' style='color:rgba(95,84,84,0.55)'></i> Last
+                                updated
+                                @if ($lastSaving)
+                                    {{ $lastSaving->date }}
+                                @endif
+                            </small>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img src="/img/pinjaman.jpg" class="card-img-top" alt="Gambar Pinjaman Nasabah"
+                        style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title">Pinjaman</h5>
+                            <p class="card-text">
+                                Total: Rp {{ number_format($myLoans->sum('remaining_amount'), 0, ',', '.') }}
+                            </p>
+                        </div>
+                        <div>
+                            @php
+                                $sortedLoans = $myLoans->sortByDesc('created_at');
+                                $lastLoan = $sortedLoans->first();
+                            @endphp
+                            <small class="text-muted"><i class='bx bx-calendar' style='color:rgba(95,84,84,0.55)'></i>
+                                Last updated
+                                @if ($lastLoan)
+                                    {{ $lastLoan->created_at->format('Y-m-d ') }}
+                                @else
+                                    N/A
+                                @endif
+                            </small>
+
                         </div>
                     </div>
                 </div>

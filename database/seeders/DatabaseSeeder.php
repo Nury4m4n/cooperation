@@ -22,20 +22,20 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'Nuryaman',
-            'email' => 'nury4m4n@gmail.com',
+            'email' => 'nuryaman@gmail.com',
             'password' => bcrypt('12345678'),
             'is_admin' => true,
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        User::create([
-            'name' => 'Agus',
-            'email' => 'agus@gmail.com',
-            'password' => bcrypt('12345678'),
-            // 'is_admin' => false,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // User::create([
+        //     'name' => 'Agus',
+        //     'email' => 'agus@gmail.com',
+        //     'password' => bcrypt('12345678'),
+        //     // 'is_admin' => false,
+        //     'created_at' => now(),
+        //     'updated_at' => now()
+        // ]);
         Customer::create([
             'code' => 'N001',
             'name' => 'Nuryaman',
@@ -47,54 +47,43 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now()
         ]);
 
-        Customer::create([
-            'code' => 'N002',
-            'name' => 'Agus',
-            'gender' => 'Laki-Laki',
-            'phone' => '085797565983',
-            'address' => 'Bandung',
-            'user_id' => '2',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        // MandatorySaving::create([
+        //     'customer_id' => '1',
+        //     'date' => now()->toDateString(),
+        //     'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
+        // MandatorySaving::create([
+        //     'customer_id' => '2',
+        //     'date' => now()->toDateString(),
+        //     'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
-        MandatorySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MandatorySaving::create([
-            'customer_id' => '2',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // MySaving::create([
+        //     'customer_id' => '1',
+        //     'date' => now()->toDateString(),
+        //     'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
-        MySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        MySaving::create([
-            'customer_id' => '1',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        MySaving::create([
-            'customer_id' => '2',
-            'date' => now()->toDateString(),
-            'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // MySaving::create([
+        //     'customer_id' => '1',
+        //     'date' => now()->toDateString(),
+        //     'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
+        // MySaving::create([
+        //     'customer_id' => '2',
+        //     'date' => now()->toDateString(),
+        //     'amount' => intval('100000'), // Mengonversi '100000' menjadi bilangan bulat
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
 
     }
 }
